@@ -28,7 +28,7 @@ class ApplicationTests {
     @Test
     void returnsTheExistingJuegos() throws Exception {
 
-        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "PS2", 2004, 24.99, "SUPER", 10, 22.49, "Action", "Take-Two Interactive", 18, "extreme violence"));
+        Juego juego = juegoRepository.save(new Juego(1,"Grand Theft Auto: San Andreas", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take-Two Interactive", 18, "extreme violence"));
 
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
@@ -36,4 +36,4 @@ class ApplicationTests {
                 .andExpect(model().attribute("juegos", hasItem(juego)));
     }
 }
-}
+
