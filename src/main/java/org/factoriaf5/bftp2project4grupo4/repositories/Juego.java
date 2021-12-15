@@ -5,6 +5,7 @@ import org.hibernate.property.access.spi.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.concurrent.Flow;
 
 @Entity
@@ -39,9 +40,8 @@ public class Juego implements Serializable {
 
     }
 
-    public Juego(Long id, String title, String platform, int year, double price1, int discount, double price2, String category, String publisher, int pegi, String pegiContent) {
+    public Juego(String title, String platform, int year, double price1, int discount, double price2, String category, String publisher, int pegi, String pegiContent) {
 
-        this.id = id;
         this.title = title;
         this.platform = platform;
         this.year = year;
@@ -161,7 +161,20 @@ public class Juego implements Serializable {
     public void setPegiContent(String pegiContent) {
         this.pegiContent = pegiContent;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Juego juego = (Juego) o;
+        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price1, juego.price1) && Objects.equals(discount, juego.discount) && Objects.equals(price2, juego.price2) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, platform, year, price1, discount, price2, category, publisher, pegi, pegiContent);
+    }
 }
+
+
 
 
 

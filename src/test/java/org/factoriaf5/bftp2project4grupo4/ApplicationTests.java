@@ -1,6 +1,7 @@
 package org.factoriaf5.bftp2project4grupo4;
 
 import org.factoriaf5.bftp2project4grupo4.repositories.Juego;
+import org.factoriaf5.bftp2project4grupo4.repositories.JuegoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,13 +25,15 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
+    @Autowired
+    JuegoRepository juegoRepository;
 
     @Test
     void returnsTheExistingJuegos() throws Exception {
 
-        Juego juego = juegoRepository.save(new Juego(1,"Grand Theft Auto: San Andreas", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take-Two Interactive", 18, "extreme violence"));
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
 
-        mockMvc.perform(get("/books"))
+        mockMvc.perform(get("/juegos"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/all"))
                 .andExpect(model().attribute("juegos", hasItem(juego)));
