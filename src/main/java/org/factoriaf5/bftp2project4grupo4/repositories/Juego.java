@@ -32,7 +32,6 @@ public class Juego implements Serializable {
     private String publisher;
     @NotNull
     private int pegi;
-    @NotNull
     private String pegiContent;
 
 
