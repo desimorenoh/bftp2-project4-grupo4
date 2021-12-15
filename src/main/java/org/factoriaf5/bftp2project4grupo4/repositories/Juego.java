@@ -73,7 +73,19 @@ public class Juego implements Serializable {
 
     @Override
     public String toString() {
-        return "Juego{" + "id=" + id + ", title='" + title + '\'' + ", platform='" + platform + '\'' + ", year='" + year + '\'' + ", price1='" + price1 + '\'' + ", discount='" + discount + '\'' + ", price2='" + price2 + '\'' + ", category='" + category + '\'' + ", publisher='" + publisher + '\'' + ", pegi='" + pegi + '\'' + ", pegiContent='" + pegiContent + '\'' + '}';
+        return "Juego{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", platform='" + platform + '\'' +
+                ", year='" + year + '\'' +
+                ", price1='" + price1 + '\'' +
+                ", discount='" + discount + '\'' +
+                ", price2='" + price2 + '\'' +
+                ", category='" + category + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", pegi='" + pegi + '\'' +
+                ", pegiContent='" + pegiContent + '\'' +
+                '}';
     }
 
 
