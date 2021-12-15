@@ -23,4 +23,16 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"));
     }
+
+    @Test
+    void returnsTheExistingJuegos() throws Exception {
+
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "PS2", 2004, 24.99, "SUPER", 10, 22.49, "Action", "Take-Two Interactive", 18, "extreme violence"));
+
+        mockMvc.perform(get("/books"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("juegos/all"))
+                .andExpect(model().attribute("juegos", hasItem(juego)));
+    }
+}
 }
