@@ -15,9 +15,10 @@ public class Juego implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-
     @NotNull
     private String title;
+    @NotNull
+    private String coverImage;
     @NotNull
     private String platform;
     @NotNull
@@ -39,9 +40,10 @@ public class Juego implements Serializable {
 
     }
 
-    public Juego(String title, String platform, int year, double price1, int discount, double price2, String category, String publisher, int pegi, String pegiContent) {
+    public Juego(String title, String coverImage, String platform, int year, double price1, int discount, double price2, String category, String publisher, int pegi, String pegiContent) {
 
         this.title = title;
+        this.coverImage = coverImage;
         this.platform = platform;
         this.year = year;
         this.price1 = price1;
@@ -75,6 +77,7 @@ public class Juego implements Serializable {
         return "Juego{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", title='" + coverImage + '\'' +
                 ", platform='" + platform + '\'' +
                 ", year='" + year + '\'' +
                 ", price1='" + price1 + '\'' +
@@ -87,6 +90,13 @@ public class Juego implements Serializable {
                 '}';
     }
 
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
 
     public String getPlatform() {
         return platform;
@@ -165,12 +175,14 @@ public class Juego implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Juego juego = (Juego) o;
-        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price1, juego.price1) && Objects.equals(discount, juego.discount) && Objects.equals(price2, juego.price2) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
+        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(coverImage, juego.coverImage) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price1, juego.price1) && Objects.equals(discount, juego.discount) && Objects.equals(price2, juego.price2) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, platform, year, price1, discount, price2, category, publisher, pegi, pegiContent);
+        return Objects.hash(id, coverImage, title, platform, year, price1, discount, price2, category, publisher, pegi, pegiContent);
     }
+
+
 }
 
 

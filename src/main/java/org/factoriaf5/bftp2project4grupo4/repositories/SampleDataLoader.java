@@ -20,6 +20,8 @@ public class SampleDataLoader {
     public void loadSampleData() {
         juegoRepository.saveAll(List.of(
                // new Juego("Una habitación propia", "Virginia Woolf", "Essay"),
+                new Juego("Wii Sports", "Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,""),
+                new Juego()
 
         ));
     }
