@@ -19,9 +19,9 @@ public class SampleDataLoader {
     @PostConstruct
     public void loadSampleData() {
         juegoRepository.saveAll(List.of(
-               // new Juego("Una habitación propia", "Virginia Woolf", "Essay"),
-                new Juego("Wii Sports", "Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,""),
-                new Juego()
+
+                new Juego("Wii Sports","jsfjdjf","Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,"sf"),
+                new Juego("Super Mario Bros.","","NES",1985, 14.99, 0,0,"Platform","Nintendo",7,"")
 
         ));
     }
