@@ -9,8 +9,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.hasItem;
+import java.awt.print.Book;
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -45,10 +50,43 @@ class ApplicationTests {
     }
 
     @Test
-    void returnsAFormToAddNewBooks() throws Exception {
+    void returnsAFormToAddNewGame() throws Exception {
         mockMvc.perform(get("/juegos/new"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/new"));
+    }
+
+    @Test
+    void allowsToCreateANewGame() throws Exception {
+        mockMvc.perform(post("/books/new")
+                        .param("title", "Grand Theft Auto: San Andreas")
+                        .param("platform", "PS2")
+                        .param("year", "2004")
+                        .param("price1", "24.99")
+                        .param("discount", "10")
+                        .param("price2", "15.99")
+                        .param("category", "Action")
+                        .param("publisher", "Take Two Interactive")
+                        .param("pegi", "18")
+                        .param("pegiContent", "extreme violence")
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/juegos"))
+        ;
+
+        List<Juego> existingJuegos = (List<Juego>) juegoRepository.findAll();
+        assertThat(existingJuegos, contains(allOf(
+                hasProperty("title", equalTo("Grand Theft Auto: San Andreas")),
+                hasProperty("platform", equalTo("PS2")),
+                hasProperty("year", equalTo("2004")),
+                hasProperty("discount", equalTo("10")),
+                hasProperty("price2", equalTo("15.99")),
+                hasProperty("category", equalTo("Action")),
+                hasProperty("publisher", equalTo("Take Two Interactive")),
+                hasProperty("pegi", equalTo("18")),
+                hasProperty("pegiContent", equalTo("extreme violence"))
+
+        )));
     }
 }
 

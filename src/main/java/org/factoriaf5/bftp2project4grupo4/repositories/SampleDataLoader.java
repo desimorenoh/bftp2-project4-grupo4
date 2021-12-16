@@ -20,7 +20,7 @@ public class SampleDataLoader {
     public void loadSampleData() {
         juegoRepository.saveAll(List.of(
 
-                new Juego("Wii Sports","jsfjdjf","Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,"sf"),
+                new Juego("Wii Sports","https://www.gamulator.com/img/roms/wii-sports-nintendo-wii-cover.jpg","Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,"sf"),
                 new Juego("Super Mario Bros.","","NES",1985, 14.99, 0,0,"Platform","Nintendo",7,""),
                 new Juego ("Nintendogs","","DS",2005, 29.99,0,0,"Simulation","Nintendo",3,"suitable for kids"),
                 new Juego("Mario Kart DS","","DS",2005,19.99,0,19.99,"Racing","Nintendo",7,""),

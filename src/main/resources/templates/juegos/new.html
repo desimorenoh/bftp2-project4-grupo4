@@ -4,59 +4,69 @@
 <body>
 <header th:replace="fragments/header"></header>
 <section class="container">
-    <form>
+    <form th:action="@{/juegos/new}" th:object="${juego}" method="post">
         <div class="form-group">
+            <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
-            <input type="text" class="col-md6 form-control form-control-sm" id="title"
-                   placeholder="Enter Title">
+            <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
+                   placeholder="Enter title">
         </div>
-        <div class="form-group">
-            <label class="col-md2" for="platform">Platform</label>
-            <input type="text" class="col-md6 form-control form-control-sm" id="platform"
-                   placeholder="Enter Platform">
+
+        <div><label class="col-md2">Platform</label>
+        <select class="form-select form-select-sm" for="platform">
+            <option selected>Select</option>
+            <option value="1">Wii</option>
+            <option value="2">Nes</option>
+            <option value="3">DS</option>
+            <option value="3">GB</option>
+            <option value="3">X360</option>
+            <option value="3">PS3</option>
+            <option value="3">PS2</option>
+            <option value="3">SNES</option>
+        </select>
         </div>
         <div class="form-group">
             <label class="col-md2" for="year">Year</label>
-            <input type="number" class="col-md6 form-control form-control-sm" id="year"
+            <input th:field="*{year}" type="number" class="col-md6 form-control form-control-sm" id="year"
                    placeholder="Enter Year">
         </div>
         <div class="form-group">
             <label class="col-md2" for="price1">Full Price</label>
-            <input type="number" class="col-md6 form-control form-control-sm" id="price1"
+            <input th:field="*{price1} "type="number" class="col-md6 form-control form-control-sm" id="price1"
                    placeholder="Enter Full Price">
         </div>
         <div class="form-group">
             <label class="col-md2" for="discount">Discount</label>
-            <input type="number" class="col-md6 form-control form-control-sm" id="discount"
+            <input th:field="*{discount}"type="number" class="col-md6 form-control form-control-sm" id="discount"
                    placeholder="Enter Discount">
         </div>
         <div class="form-group">
             <label class="col-md2" for="price2">Price (discount)</label>
-            <input type="number" class="col-md6 form-control form-control-sm" id="price2"
+            <input th:field="*{price2}" type="number" class="col-md6 form-control form-control-sm" id="price2"
                    placeholder="Enter Price (after discount)">
         </div>
         <div class="form-group">
             <label class="col-md2" for="category">Category</label>
-            <input type="text" class="col-md6 form-control form-control-sm" id="category"
+            <input th:field="*{category}"type="text" class="col-md6 form-control form-control-sm" id="category"
                    placeholder="Enter Category">
         </div>
         <div class="form-group">
             <label class="col-md2" for="publisher">Publisher</label>
-            <input type="text" class="col-md6 form-control form-control-sm" id="publisher"
+            <input th:field="*{publisher}"type="text" class="col-md6 form-control form-control-sm" id="publisher"
                    placeholder="Enter Publisher">
         </div>
         <div class="form-group">
             <label class="col-md2" for="pegi">PEGI</label>
-            <input type="number" class="col-md6 form-control form-control-sm" id="pegi"
+            <input th:field="*{pegi}"type="number" class="col-md6 form-control form-control-sm" id="pegi"
                    placeholder="Enter PEGI">
         </div>
         <div class="form-group">
             <label class="col-md2" for="pegiContent">PEGI Content</label>
-            <input type="text" class="col-md6 form-control form-control-sm" id="pegiContent"
+            <input th:field="*{pegiContent}"type="text" class="col-md6 form-control form-control-sm" id="pegiContent"
                    placeholder="Enter PEGI Content">
         </div>
-        <div class="card-footer ">
-            <input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
+        <div class="card-footer mb-5">
+            <input type="submit"  class="btn btn-primary btn-lg" style="background-color: #ffaa05;" value="Save"/>
         </div>
     </form>
 </section>

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -33,6 +35,11 @@ public class JuegoController {
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
         return "juegos/new";
+    }
+    @PostMapping("/juegos/new")
+    String addBook(@ModelAttribute Juego juego) {
+        juegoRepository.save(juego);
+        return "redirect:/juegos";
     }
 
 }
