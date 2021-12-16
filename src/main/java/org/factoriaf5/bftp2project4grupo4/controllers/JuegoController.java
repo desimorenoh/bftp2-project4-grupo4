@@ -27,4 +27,12 @@ public class JuegoController {
         model.addAttribute("juegos", juegos);
         return "juegos/all";
     }
+
+    @GetMapping("/juegos/new")
+    String getForm(Model model){
+        Juego juego = new Juego();
+        model.addAttribute("juego", juego);
+        return "juegos/new";
+    }
+
 }
