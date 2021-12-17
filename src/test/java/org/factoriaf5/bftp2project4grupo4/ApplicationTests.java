@@ -88,5 +88,14 @@ class ApplicationTests {
 
         )));
     }
+
+    @Test
+    void returnsAFormToAddNewJuegos() throws Exception {
+        mockMvc.perform(get("/juegos/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("juegos/edit"))
+                .andExpect(model().attributeExists("juego"))
+                .andExpect(model().attribute("title", "Create new juego"));
+    }
 }
 

@@ -34,12 +34,16 @@ public class JuegoController {
     String getForm(Model model){
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
-        return "juegos/new";
+        model.addAttribute("title", "Create new juego");
+        return "juegos/edit";
     }
+
     @PostMapping("/juegos/new")
     String addBook(@ModelAttribute Juego juego) {
         juegoRepository.save(juego);
         return "redirect:/juegos";
     }
+
+
 
 }
