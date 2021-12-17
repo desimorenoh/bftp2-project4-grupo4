@@ -3,11 +3,11 @@
 <head th:replace="fragments/head"> </head>
 <body>
 <header th:replace="fragments/header"></header>
-<section class="container">
-    <h2>Welcome to Legacy Games</h2>
-    <p>Go to the <a href="/juegos/">Juegos</a> section or <a href="/juegos/new">Add new game</a></p>
 
-    <div class="d-flex flex-row flex-sm-wrap justify-content-between align-items-center bd-highlight mb-3">
+<section class="container mt-5">
+    <h1 th:text="${title}"></h1>
+
+    <div class="d-flex flex-row flex-sm-wrap justify-content-between align-items-center bd-highlight mb-5">
 
         <div th:each="juego: ${juegos}" class="card" style="width: 18rem;">
             <img th:src="${juego.coverImage}" class="card-img-top" alt="cover">
@@ -16,17 +16,15 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li th:text="${juego.category}" class="list-group-item"></li>
+                <li th:text="${juego.platform}" class="list-group-item"></li>
                 <li th:text="${juego.price1}" class="list-group-item"></li>
                 <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
             </ul>
-            <div class="card-body">
-                <a class="btn btn-success btn-sm" th:href="'/juegos/edit/'+${juego.id}">Edit</a>
-                <a class="btn btn-danger btn-sm" th:href="'/juegos/delete/'+${juego.id}">Delete</a>
-            </div>
+
         </div>
     </div>
-</section>
 
+</section>
 
 <footer th:replace="fragments/footer"></footer>
 </body>

@@ -3,7 +3,7 @@
 <head th:replace="fragments/head"> </head>
 <body>
 <header th:replace="fragments/header"></header>
-<section class="container">
+<section class="container mt-5">
         <h1 th:text="${title}"></h1>
     <form th:action="@{/juegos/new}" th:object="${juego}" method="post">
         <div class="form-group">
@@ -12,18 +12,22 @@
             <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
                    placeholder="Enter title">
         </div>
+        <div class="form-group">
+            <label class="col-md2" for="coverImage">Cover Image</label>
+            <input th:field="*{coverImage}" type="url" class="col-md6 form-control form-control-sm" id="coverImage"
+                   placeholder="Enter Url">
+        </div>
 
         <div><label class="col-md2">Platform</label>
-        <select class="form-select form-select-sm" for="platform">
-            <option selected>Select</option>
-            <option value="1">Wii</option>
-            <option value="2">Nes</option>
-            <option value="3">DS</option>
-            <option value="3">GB</option>
-            <option value="3">X360</option>
-            <option value="3">PS3</option>
-            <option value="3">PS2</option>
-            <option value="3">SNES</option>
+        <select th:field="*{platform}" class="form-select form-select-sm" for="platform">
+            <option th:value="Wii">Wii</option>
+            <option th:value="Nes">Nes</option>
+            <option th:value="DS">DS</option>
+            <option th:value="GB">GB</option>
+            <option th:value="X360">X360</option>
+            <option th:value="PS3">PS3</option>
+            <option th:value="PS2">PS2</option>
+            <option th:value="SNES">SNES</option>
         </select>
         </div>
         <div class="form-group">
@@ -33,7 +37,7 @@
         </div>
         <div class="form-group">
             <label class="col-md2" for="price1">Full Price</label>
-            <input th:field="*{price1} "type="number" class="col-md6 form-control form-control-sm" id="price1"
+            <input th:field="*{price1} "type="text" class="col-md6 form-control form-control-sm" id="price1"
                    placeholder="Enter Full Price">
         </div>
         <div class="form-group">
@@ -43,19 +47,29 @@
         </div>
         <div class="form-group">
             <label class="col-md2" for="price2">Price (discount)</label>
-            <input th:field="*{price2}" type="number" class="col-md6 form-control form-control-sm" id="price2"
+            <input th:field="*{price2}" type="text" class="col-md6 form-control form-control-sm" id="price2"
                    placeholder="Enter Price (after discount)">
         </div>
-        <div class="form-group">
-            <label class="col-md2" for="category">Category</label>
-            <input th:field="*{category}"type="text" class="col-md6 form-control form-control-sm" id="category"
-                   placeholder="Enter Category">
+        <div><label class="col-md2">Category</label>
+            <select th:field="*{category}" class="form-select form-select-sm" for="category">
+                <option th:value="Sports">Sports</option>
+                <option th:value="Action">Action</option>
+                <option th:value="Racing">Racing</option>
+                <option th:value="Role-Playing">Role-Playing</option>
+                <option th:value="Puzzle">Puzzle</option>
+                <option th:value="Misc">Misc</option>
+                <option th:value="Shooter">Shooter</option>
+                <option th:value="Simulation">Simulation</option>
+                <option th:value="Fight-Fighting">Fight-Fighting</option>
+                <option th:value="Platform">Platform</option>
+            </select>
         </div>
         <div class="form-group">
             <label class="col-md2" for="publisher">Publisher</label>
             <input th:field="*{publisher}"type="text" class="col-md6 form-control form-control-sm" id="publisher"
-                   placeholder="Enter Publisher">
+                   placeholder="Enter publisher">
         </div>
+
         <div class="form-group">
             <label class="col-md2" for="pegi">PEGI</label>
             <input th:field="*{pegi}"type="number" class="col-md6 form-control form-control-sm" id="pegi"
