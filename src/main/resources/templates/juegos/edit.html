@@ -3,7 +3,7 @@
 <head th:replace="fragments/head"> </head>
 <body>
 <header th:replace="fragments/header"></header>
-<section class="container">
+<section class="container mt-5">
         <h1 th:text="${title}"></h1>
     <form th:action="@{/juegos/new}" th:object="${juego}" method="post">
         <div class="form-group">

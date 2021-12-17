@@ -26,7 +26,7 @@ public class JuegoController {
     @GetMapping("/juegos")
     String listJuegos(Model model) {
         List<Juego> juegos = (List<Juego>) juegoRepository.findAll();
-        model.addAttribute("title", "Juego list");
+        model.addAttribute("title", "Lista de Juegos");
         model.addAttribute("juegos", juegos);
         return "juegos/all";
     }
@@ -35,7 +35,7 @@ public class JuegoController {
     String newJuego(Model model){
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
-        model.addAttribute("title", "Create new juego");
+        model.addAttribute("title", "Añadir Nuevo Juego");
         return "juegos/edit";
     }
 
@@ -49,7 +49,7 @@ public class JuegoController {
     String editJuego(Model model, @PathVariable Long id){
         Juego juego = juegoRepository.findById(id).get();
         model.addAttribute("juego", juego);
-        model.addAttribute("title", "Edit juego");
+        model.addAttribute("title", "Editar Juego");
         return "juegos/edit";
     }
     @GetMapping("/juegos/delete/{id}")
@@ -60,7 +60,7 @@ public class JuegoController {
     @GetMapping("/home")
     String listJuegosOnHome(Model model) {
         List<Juego> juegos = (List<Juego>) juegoRepository.findAll();
-        model.addAttribute("title", "Juego list");
+        model.addAttribute("title", "Novedades!!!");
         model.addAttribute("juegos", juegos);
         return "juegos/front";
     }
