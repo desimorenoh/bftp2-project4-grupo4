@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.awt.print.Book;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -56,12 +57,16 @@ class ApplicationTests {
     void returnsAFormToAddNewGame() throws Exception {
         mockMvc.perform(get("/juegos/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("juegos/new"));
+                .andExpect(view().name("juegos/edit"))
+                .andExpect(model().attributeExists("juego"))
+                .andExpect(model().attribute("title", "Create new juego"));
     }
+
+
 
     @Test
     void allowsToCreateANewGame() throws Exception {
-        mockMvc.perform(post("/books/new")
+        mockMvc.perform(post("/juegos/new")
                         .param("title", "Grand Theft Auto: San Andreas")
                         .param("platform", "PS2")
                         .param("year", "2004")
@@ -100,16 +105,23 @@ class ApplicationTests {
                 .andExpect(model().attributeExists("juego"))
                 .andExpect(model().attribute("title", "Create new juego"));
     }
-
-    @GetMapping("/juegos/edit/{id}")
-    String editJuego(Model model, @PathVariable Long id){
-        Juego juego = juegoRepository.findById(id).get();
-        model.addAttribute("juego", juego);
-        model.addAttribute("title", "Edit juego");
-        return "juego/edit";
-
+    @Test
+    void returnsAFormToEditJuegos() throws Exception {
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+        mockMvc.perform(get("/juegos/edit/" + juego.getId()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("juegos/edit"))
+                .andExpect(model().attribute("juego", juego))
+                .andExpect(model().attribute("title", "Edit juego"));
     }
+    @Test
+    void allowsToDeleteAJuego() throws Exception {
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+        mockMvc.perform(get("/juegos/delete/" + juego.getId()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/juegos"));
 
-
+        assertThat(juegoRepository.findById(juego.getId()), equalTo(Optional.empty()));
+    }
 }
 

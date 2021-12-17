@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class JuegoController {
     }
 
     @GetMapping("/juegos/new")
-    String getForm(Model model){
+    String newJuego(Model model){
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
         model.addAttribute("title", "Create new juego");
@@ -44,6 +45,23 @@ public class JuegoController {
         return "redirect:/juegos";
     }
 
-
-
+    @GetMapping("/juegos/edit/{id}")
+    String editJuego(Model model, @PathVariable Long id){
+        Juego juego = juegoRepository.findById(id).get();
+        model.addAttribute("juego", juego);
+        model.addAttribute("title", "Edit juego");
+        return "juegos/edit";
+    }
+    @GetMapping("/juegos/delete/{id}")
+    String remove(@PathVariable Long id) {
+        juegoRepository.deleteById(id);
+        return "redirect:/juegos";
+    }
+    @GetMapping("/home")
+    String listJuegosOnHome(Model model) {
+        List<Juego> juegos = (List<Juego>) juegoRepository.findAll();
+        model.addAttribute("title", "Juego list");
+        model.addAttribute("juegos", juegos);
+        return "juegos/front";
+    }
 }
