@@ -123,5 +123,6 @@ class ApplicationTests {
 
         assertThat(juegoRepository.findById(juego.getId()), equalTo(Optional.empty()));
     }
+
 }
 
