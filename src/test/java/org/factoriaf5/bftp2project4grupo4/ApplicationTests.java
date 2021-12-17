@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -97,5 +100,16 @@ class ApplicationTests {
                 .andExpect(model().attributeExists("juego"))
                 .andExpect(model().attribute("title", "Create new juego"));
     }
+
+    @GetMapping("/juegos/edit/{id}")
+    String editJuego(Model model, @PathVariable Long id){
+        Juego juego = juegoRepository.findById(id).get();
+        model.addAttribute("juego", juego);
+        model.addAttribute("title", "Edit juego");
+        return "juego/edit";
+
+    }
+
+
 }
 
