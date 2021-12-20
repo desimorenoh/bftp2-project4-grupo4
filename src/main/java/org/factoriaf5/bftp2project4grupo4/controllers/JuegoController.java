@@ -40,7 +40,7 @@ public class JuegoController {
     }
 
     @PostMapping("/juegos/new")
-    String addBook(@ModelAttribute Juego juego) {
+    String addJuego(@ModelAttribute Juego juego) {
         juegoRepository.save(juego);
         return "redirect:/juegos";
     }

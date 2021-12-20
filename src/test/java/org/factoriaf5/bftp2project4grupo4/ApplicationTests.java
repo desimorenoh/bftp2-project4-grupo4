@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -34,15 +36,17 @@ class ApplicationTests {
     MockMvc mockMvc;
 
     @Test
+    @WithMockUser
     void loadsTheHomePage() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("home"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/home"));
     }
     @Autowired
     JuegoRepository juegoRepository;
 
     @Test
+    @WithMockUser
     void returnsTheExistingJuegos() throws Exception {
 
         Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
@@ -54,19 +58,22 @@ class ApplicationTests {
     }
 
     @Test
+    @WithMockUser
     void returnsAFormToAddNewGame() throws Exception {
         mockMvc.perform(get("/juegos/new"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attributeExists("juego"))
-                .andExpect(model().attribute("title", "Create new juego"));
+                .andExpect(model().attribute("title", "Añadir Nuevo Juego"));
     }
 
 
 
     @Test
+    @WithMockUser
     void allowsToCreateANewGame() throws Exception {
         mockMvc.perform(post("/juegos/new")
+                        .with(csrf())
                         .param("title", "Grand Theft Auto: San Andreas")
                         .param("platform", "PS2")
                         .param("year", "2004")
@@ -86,35 +93,39 @@ class ApplicationTests {
         assertThat(existingJuegos, contains(allOf(
                 hasProperty("title", equalTo("Grand Theft Auto: San Andreas")),
                 hasProperty("platform", equalTo("PS2")),
-                hasProperty("year", equalTo("2004")),
-                hasProperty("discount", equalTo("10")),
-                hasProperty("price2", equalTo("15.99")),
+                hasProperty("year", equalTo(2004)),
+                hasProperty("price1", equalTo(24.99)),
+                hasProperty("discount", equalTo(10)),
+                hasProperty("price2", equalTo(15.99)),
                 hasProperty("category", equalTo("Action")),
                 hasProperty("publisher", equalTo("Take Two Interactive")),
-                hasProperty("pegi", equalTo("18")),
+                hasProperty("pegi", equalTo(18)),
                 hasProperty("pegiContent", equalTo("extreme violence"))
 
         )));
     }
 
     @Test
+    @WithMockUser
     void returnsAFormToAddNewJuegos() throws Exception {
         mockMvc.perform(get("/juegos/new"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attributeExists("juego"))
-                .andExpect(model().attribute("title", "Create new juego"));
+                .andExpect(model().attribute("title", "Añadir Nuevo Juego"));
     }
     @Test
+    @WithMockUser
     void returnsAFormToEditJuegos() throws Exception {
         Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
         mockMvc.perform(get("/juegos/edit/" + juego.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attribute("juego", juego))
-                .andExpect(model().attribute("title", "Edit juego"));
+                .andExpect(model().attribute("title", "Editar Juego"));
     }
     @Test
+    @WithMockUser
     void allowsToDeleteAJuego() throws Exception {
         Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
         mockMvc.perform(get("/juegos/delete/" + juego.getId()))

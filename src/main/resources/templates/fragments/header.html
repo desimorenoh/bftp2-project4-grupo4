@@ -44,6 +44,12 @@
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-danger" type="submit">Buscar</button>
                 </form>
+                <form th:action="@{/login}" method="get">
+                    <input class="btn btn-warning" type="submit" value="Login"/>
+                </form>
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn btn-warning" type="submit" value="Sign Out"/>
+                </form>
             </div>
         </div>
     </nav>
