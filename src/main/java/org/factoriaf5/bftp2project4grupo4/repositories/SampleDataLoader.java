@@ -20,11 +20,12 @@ public class SampleDataLoader {
     public void loadSampleData() {
         juegoRepository.saveAll(List.of(
 
-                new Juego("Wii Sports","https://www.gamulator.com/img/roms/wii-sports-nintendo-wii-cover.jpg","Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,"sf"),
-                new Juego("Super Mario Bros.","https://www.mobygames.com/images/covers/l/104935-super-mario-bros-game-boy-advance-front-cover.jpg","NES",1985, 14.99, 0,0,"Platform","Nintendo",7,""),
                 new Juego ("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo",3,"suitable for kids"),
-                new Juego("Mario Kart DS","https://www.mobygames.com/images/covers/l/285423-mario-kart-8-wii-u-front-cover.jpg","DS",2005,19.99,0,19.99,"Racing","Nintendo",7,""),
+                new Juego("Animal Crossing: Wild World","https://www.mobygames.com/images/covers/l/188085-animal-crossing-wild-world-nintendo-ds-front-cover.jpg","DS", 2005, 29.99,0,0.0,"Simulation", "Nintendo", 3,"Suitable for Kids"),
                 new Juego("Pokemon Gold/Pokemon Silver","https://www.mobygames.com/images/covers/l/51564-pokemon-gold-version-game-boy-color-front-cover.jpg", "GB", 1999, 24.99, 0, 24.99, "Role-Playing","Nintendo", 7,""),
+                new Juego("FIFA 16", "https://m.media-amazon.com/images/I/91u4uuhNIhL._SY445_.jpg", "PS4", 2015, 9.99, 10, 8.99, "Sports", "Electronic Arts", 7, ""),
+                new Juego("Mario Kart DS","https://www.mobygames.com/images/covers/l/285423-mario-kart-8-wii-u-front-cover.jpg","DS",2005,19.99,0,19.99,"Racing","Nintendo",7,""),
+                new Juego("Wii Sports","https://www.gamulator.com/img/roms/wii-sports-nintendo-wii-cover.jpg","Wii", 2006, 19.99,0,19.99,"Sports", "Nintendo", 7,"sf"),
                 new Juego("Wii Fit", "https://www.mobygames.com/images/covers/l/123314-wii-fit-wii-other.jpg", "Wii", 2007, 9.99, 0, 9.99, "Sports", "Nintendo", 3, "suitable for kids"),
                 new Juego("Wii Fit Plus", "https://www.mobygames.com/images/covers/l/201385-wii-fit-plus-wii-other.jpg", "Wii", 2009, 8.99, 0, 8.99, "Sports", "Nintendo", 3, "suitable for kids"),
                 new Juego("Kinect Adventures!", "https://www.mobygames.com/images/covers/l/554502-kinect-adventures-xbox-360-front-cover.jpg", "X360", 2010, 12.99, 0, 12.99, "Misc", "Microsoft Game Studios",7,""),
