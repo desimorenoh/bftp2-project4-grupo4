@@ -9,11 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,7 +118,7 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attribute("juego", juego))
-                .andExpect(model().attribute("title", "Editar Juego"));
+                .andExpect(model().attribute("title", "Edit Juego"));
     }
     @Test
     @WithMockUser

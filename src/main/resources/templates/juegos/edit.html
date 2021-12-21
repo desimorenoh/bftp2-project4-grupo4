@@ -4,7 +4,7 @@
 <body>
 <header th:replace="fragments/header"></header>
 <section class="container mt-5">
-        <h1 th:text="${title}"></h1>
+    <h1 th:text="${title}"></h1>
     <form th:action="@{/juegos/new}" th:object="${juego}" method="post">
         <div class="form-group">
             <input type="hidden" th:field="*{id}">
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
             <label class="col-md2" for="price1">Full Price</label>
-            <input th:field="*{price1} "type="text" class="col-md6 form-control form-control-sm" id="price1"
+            <input th:field="*{price} "type="text" class="col-md6 form-control form-control-sm" id="price1"
                    placeholder="Enter Full Price">
         </div>
         <div class="form-group">
@@ -45,11 +45,12 @@
             <input th:field="*{discount}"type="number" class="col-md6 form-control form-control-sm" id="discount"
                    placeholder="Enter Discount">
         </div>
-        <div class="form-group">
-            <label class="col-md2" for="price2">Price (discount)</label>
-            <input th:field="*{price2}" type="text" class="col-md6 form-control form-control-sm" id="price2"
-                   placeholder="Enter Price (after discount)">
-        </div>
+
+<!--        <div class="form-group">-->
+<!--            <label class="col-md2" for="price2">Price (discount)</label>-->
+<!--            <input th:field="*{priceWithDiscount}" type="text" class="col-md6 form-control form-control-sm" id="price2"-->
+<!--                   placeholder="Enter Price (after discount)">-->
+<!--        </div>-->
         <div><label class="col-md2">Category</label>
             <select th:field="*{category}" class="form-select form-select-sm" for="category">
                 <option th:value="Sports">Sports</option>

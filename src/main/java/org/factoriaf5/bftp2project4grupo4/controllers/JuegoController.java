@@ -64,4 +64,5 @@ public class JuegoController {
         model.addAttribute("juegos", juegos);
         return "juegos/front";
     }
+
 }

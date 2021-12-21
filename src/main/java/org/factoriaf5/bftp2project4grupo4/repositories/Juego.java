@@ -24,9 +24,7 @@ public class Juego implements Serializable {
     @NotNull
     private int year;
     @NotNull
-    private double price1;
-    private int discount;
-    private double price2;
+    private double discount;
     @NotNull
     private String category;
     @NotNull
@@ -34,21 +32,23 @@ public class Juego implements Serializable {
     @NotNull
     private int pegi;
     private String pegiContent;
+    private double price;
+    private double priceWithDiscount;
 
 
     public Juego() {
 
     }
 
-    public Juego(String title, String coverImage, String platform, int year, double price1, int discount, double price2, String category, String publisher, int pegi, String pegiContent) {
+    public Juego(String title, String coverImage, String platform, int year, double price, double discount, double priceWithDiscount, String category, String publisher, int pegi, String pegiContent) {
 
         this.title = title;
         this.coverImage = coverImage;
         this.platform = platform;
         this.year = year;
-        this.price1 = price1;
+        this.price = price;
         this.discount = discount;
-        this.price2 = price2;
+        this.priceWithDiscount = priceWithDiscount;
         this.category = category;
         this.publisher = publisher;
         this.pegi = pegi;
@@ -80,9 +80,9 @@ public class Juego implements Serializable {
                 ", title='" + coverImage + '\'' +
                 ", platform='" + platform + '\'' +
                 ", year='" + year + '\'' +
-                ", price1='" + price1 + '\'' +
+                ", price='" + price + '\'' +
                 ", discount='" + discount + '\'' +
-                ", price2='" + price2 + '\'' +
+                ", priceWithDiscount='" + priceWithDiscount + '\'' +
                 ", category='" + category + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", pegi='" + pegi + '\'' +
@@ -115,28 +115,12 @@ public class Juego implements Serializable {
     }
 
 
-    public double getPrice1() {
-        return price1;
-    }
-
-    public void setPrice1(double price1) {
-        this.price1 = price1;
-    }
-
-    public int getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
-    }
-
-    public double getPrice2() {
-        return price2;
-    }
-
-    public void setPrice2(double price2) {
-        this.price2 = price2;
     }
 
     public String getCategory() {
@@ -175,14 +159,28 @@ public class Juego implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Juego juego = (Juego) o;
-        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(coverImage, juego.coverImage) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price1, juego.price1) && Objects.equals(discount, juego.discount) && Objects.equals(price2, juego.price2) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
+        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(coverImage, juego.coverImage) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price, juego.price) && Objects.equals(discount, juego.discount) && Objects.equals(price, juego.price) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(id, coverImage, title, platform, year, price1, discount, price2, category, publisher, pegi, pegiContent);
+        return Objects.hash(id, coverImage, title, platform, year, price, discount, price, category, publisher, pegi, pegiContent);
     }
 
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getPriceWithDiscount() {
+        return this.price*(1-this.discount/100);
+    }
+    public void setPriceWithDiscount(double price, double discount) {
+        this.priceWithDiscount = price*(1-this.discount/100);
+    }
 }
 
 
