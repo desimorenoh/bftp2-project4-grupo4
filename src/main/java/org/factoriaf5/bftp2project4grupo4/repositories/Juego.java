@@ -13,7 +13,6 @@ import java.util.concurrent.Flow;
 public class Juego implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     @NotNull
     private String title;
@@ -159,7 +158,7 @@ public class Juego implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Juego juego = (Juego) o;
-        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(coverImage, juego.coverImage) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price, juego.price) && Objects.equals(discount, juego.discount) && Objects.equals(price, juego.price) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
+        return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(coverImage, juego.coverImage) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price, juego.price) && Objects.equals(discount, juego.discount) && Objects.equals(priceWithDiscount, juego.priceWithDiscount) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
     }
     @Override
     public int hashCode() {
@@ -182,6 +181,7 @@ public class Juego implements Serializable {
         this.priceWithDiscount = price*(1-this.discount/100);
     }
 }
+
 
 
 
