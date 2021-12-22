@@ -1,12 +1,10 @@
 package org.factoriaf5.bftp2project4grupo4.repositories;
 
 import com.sun.istack.NotNull;
-import org.hibernate.property.access.spi.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.concurrent.Flow;
 
 @Entity
 @Table(name = "juegos")
@@ -153,6 +151,7 @@ public class Juego implements Serializable {
     public void setPegiContent(String pegiContent) {
         this.pegiContent = pegiContent;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -160,6 +159,7 @@ public class Juego implements Serializable {
         Juego juego = (Juego) o;
         return Objects.equals(id, juego.id) && Objects.equals(title, juego.title) && Objects.equals(coverImage, juego.coverImage) && Objects.equals(platform, juego.platform) && Objects.equals(year, juego.year) && Objects.equals(price, juego.price) && Objects.equals(discount, juego.discount) && Objects.equals(priceWithDiscount, juego.priceWithDiscount) && Objects.equals(category, juego.category) && Objects.equals(publisher, juego.publisher) && Objects.equals(pegi, juego.pegi) && Objects.equals(juego.pegiContent, juego.pegiContent);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, coverImage, title, platform, year, price, discount, price, category, publisher, pegi, pegiContent);
@@ -175,12 +175,26 @@ public class Juego implements Serializable {
     }
 
     public double getPriceWithDiscount() {
-        return this.price*(1-this.discount/100);
+        return this.price * (1 - this.discount / 100);
     }
+
     public void setPriceWithDiscount(double price, double discount) {
-        this.priceWithDiscount = price*(1-this.discount/100);
+        this.priceWithDiscount = price * (1 - this.discount / 100);
     }
 }
+
+//    public boolean hasDiscount() {
+//        if (discount != 0) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+
+
+
+
+
+
 
 
 

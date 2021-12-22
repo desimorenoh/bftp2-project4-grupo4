@@ -131,5 +131,16 @@ class ApplicationTests {
         assertThat(juegoRepository.findById(juego.getId()), equalTo(Optional.empty()));
     }
 
+//    @Test
+//    void allowsToKnowIfJuegoHaveADiscount() throws Exception {
+//        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+//        mockMvc.perform(get("/juegos/edit" + juego.getId()))
+//                .andExpect(status().isOk())
+//                .andExpect(view().name("juegos/edit/{id}")
+//                .andExpect(model().attributeExists("discount"));
+//
+//        assertThat(juegoRepository.findById("discount", equalTo(0));
+//    }
+
 }
 

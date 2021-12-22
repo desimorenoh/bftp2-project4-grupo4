@@ -26,6 +26,7 @@
                 <li th:text="${juego.discount}" class="list-group-item"></li>
                 <li th:text="${juego.priceWithDiscount}" class="list-group-item"></li>
                 <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
+<!--                <li th:text="${juego.price}" class="list-group-tache" style="text-decoration: line-through"></li>-->
             </ul>
             <div class="card-body mb-5">
                 <a class="btn btn-outline-warning btn-sm" th:href="'/juegos/edit/'+${juego.id}">Edit</a>
