@@ -40,8 +40,8 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex" action="/juegos/search" method="get" sec:authorize="isAuthenticated()">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <form class="d-flex" action="/juegos/search" method="get">
+                    <input name="word" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-danger" type="submit">Buscar</button>
                 </form>
                 <form th:action="@{/login}" method="get" sec:authorize="isAnonymous()">

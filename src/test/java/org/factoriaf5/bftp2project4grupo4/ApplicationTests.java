@@ -153,7 +153,7 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/front"))
                 .andExpect(model().attribute("title", equalTo("Juegos containing \"Grand\"")))
-                .andExpect(model().attribute("juegos", hasItem(juegoWithoutWord)))
+                .andExpect(model().attribute("juegos", hasItem(juegoWithWord)))
                 .andExpect(model().attribute("juegos", not(hasItem(juegoWithoutWord))));
     }
 }

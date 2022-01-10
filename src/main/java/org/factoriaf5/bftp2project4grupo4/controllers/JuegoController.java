@@ -67,6 +67,7 @@ public class JuegoController {
         List<Juego> juegos = juegoRepository.findJuegoByTitleContaining(word);
         model.addAttribute("title", String.format("Juegos containing \"%s\"", word));
         model.addAttribute("juegos", juegos);
+
         return "juegos/front";
     }
 
