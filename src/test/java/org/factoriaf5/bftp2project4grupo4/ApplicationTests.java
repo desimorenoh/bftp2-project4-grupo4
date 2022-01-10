@@ -142,5 +142,19 @@ class ApplicationTests {
 //        assertThat(juegoRepository.findById("discount", equalTo(0));
 //    }
 
+    @Test
+    @WithMockUser
+    void allowsToSearchGamesByTitle() throws Exception {
+
+        Juego juegoWithWord = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+        Juego juegoWithoutWord = juegoRepository.save(new Juego("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo",3,"suitable for kids"));
+
+        mockMvc.perform(get("/juegos/search?word=Grand"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("juegos/front"))
+                .andExpect(model().attribute("title", equalTo("Juegos containing \"Grand\"")))
+                .andExpect(model().attribute("juegos", hasItem(juegoWithoutWord)))
+                .andExpect(model().attribute("juegos", not(hasItem(juegoWithoutWord))));
+    }
 }
 

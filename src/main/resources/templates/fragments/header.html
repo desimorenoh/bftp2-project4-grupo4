@@ -1,4 +1,4 @@
-<header>
+<header xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <nav class="navbar navbar-expand-lg" style="background-color: #000000;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">
@@ -40,15 +40,15 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" action="/juegos/search" method="get" sec:authorize="isAuthenticated()">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-danger" type="submit">Buscar</button>
                 </form>
-                <form th:action="@{/login}" method="get">
+                <form th:action="@{/login}" method="get" sec:authorize="isAnonymous()">
                     <input class="btn btn-outline-danger ms-2" type="submit" value="Login"/>
                 </form>
-                <form th:action="@{/logout}" method="post">
-                    <input class="btn btn-outline-danger ms-2" type="submit" value="Sign Out"/>
+                <form th:action="@{/logout}" sec:authorize="isAuthenticated()" method="post">
+                      <input class="btn btn-outline-danger ms-2" type="submit" value="Sign Out"/>
                 </form>
             </div>
         </div>

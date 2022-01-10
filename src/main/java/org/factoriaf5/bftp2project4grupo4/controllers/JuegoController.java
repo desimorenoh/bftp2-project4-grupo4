@@ -6,10 +6,7 @@ import org.factoriaf5.bftp2project4grupo4.repositories.JuegoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -61,6 +58,14 @@ public class JuegoController {
     String listJuegosOnHome(Model model) {
         List<Juego> juegos = (List<Juego>) juegoRepository.findAll();
         model.addAttribute("title", "Novedades!!!");
+        model.addAttribute("juegos", juegos);
+        return "juegos/front";
+    }
+
+    @GetMapping("/juegos/search")
+    String searchJuego(@RequestParam String word, Model model) {
+        List<Juego> juegos = juegoRepository.findJuegoByTitleContaining(word);
+        model.addAttribute("title", String.format("Juegos containing \"%s\"", word));
         model.addAttribute("juegos", juegos);
         return "juegos/front";
     }
