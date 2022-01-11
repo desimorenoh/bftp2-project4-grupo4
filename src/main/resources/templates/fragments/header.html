@@ -18,25 +18,17 @@
                         <a class="nav-link" href="/juegos" style="color:#ffffff">Administrador</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" style="color:#ffffff" id="navbarDropdown"
+                        <a class="nav-link dropdown-toggle" href="/juegos/" style="color:#ffffff" id="navbarDropdown"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Juegos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Sport</a></li>
-                            <li><a class="dropdown-item" href="#">Racing</a></li>
-                            <li><a class="dropdown-item" href="#">Role-Playing</a></li>
-                            <li><a class="dropdown-item" href="#">Puzzle</a></li>
-                            <li><a class="dropdown-item" href="#">Misc</a></li>
-                            <li><a class="dropdown-item" href="#">Shooter</a></li>
-                            <li><a class="dropdown-item" href="#">Simulation</a></li>
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Fighting</a></li>
-                            <li><a class="dropdown-item" href="#">Platform</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                            <li th:each="category: ${categories}">
+                                <a th:href="${'/juegos?category='+category.name}"
+                                   th:text="${category.name}">
+                                </a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Otros</a></li>
+
                         </ul>
                     </li>
                 </ul>
