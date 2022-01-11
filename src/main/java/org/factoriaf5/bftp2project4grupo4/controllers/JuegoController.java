@@ -1,5 +1,6 @@
 package org.factoriaf5.bftp2project4grupo4.controllers;
 
+import org.factoriaf5.bftp2project4grupo4.repositories.CategoryRepository;
 import org.factoriaf5.bftp2project4grupo4.repositories.Juego;
 import org.factoriaf5.bftp2project4grupo4.repositories.JuegoRepository;
 
@@ -13,18 +14,21 @@ import java.util.List;
 @Controller
 public class JuegoController {
 
-    private JuegoRepository juegoRepository;
+    private final JuegoRepository juegoRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public JuegoController(JuegoRepository juegoRepository) {
+    public JuegoController(JuegoRepository juegoRepository, CategoryRepository categoryRepository) {
         this.juegoRepository = juegoRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/juegos")
-    String listJuegos(Model model) {
-        List<Juego> juegos = (List<Juego>) juegoRepository.findAll();
+    String listJuegos(Model model, @RequestParam(required = false) String category) {
+
         model.addAttribute("title", "Lista de Juegos");
-        model.addAttribute("juegos", juegos);
+        model.addAttribute("juegos", getJuegos(category));
+        model.addAttribute("categories", categoryRepository.findAll());
         return "juegos/all";
     }
 
@@ -32,6 +36,7 @@ public class JuegoController {
     String newJuego(Model model){
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Añadir Nuevo Juego");
         return "juegos/edit";
     }
@@ -46,6 +51,7 @@ public class JuegoController {
     String editJuego(Model model, @PathVariable Long id){
         Juego juego = juegoRepository.findById(id).get();
         model.addAttribute("juego", juego);
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("title", "Editar Juego");
         return "juegos/edit";
     }
@@ -67,8 +73,16 @@ public class JuegoController {
         List<Juego> juegos = juegoRepository.findJuegoByTitleContaining(word);
         model.addAttribute("title", String.format("Juegos containing \"%s\"", word));
         model.addAttribute("juegos", juegos);
-
+        model.addAttribute("categories", categoryRepository.findAll());
         return "juegos/front";
+    }
+
+
+    private List<Juego> getJuegos(String category) {
+        if (category == null) {
+            return juegoRepository.findAll();
+        }
+        return juegoRepository.findJuegosByCategoryEquals(category);
     }
 
 }

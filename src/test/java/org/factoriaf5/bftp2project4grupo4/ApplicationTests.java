@@ -50,7 +50,17 @@ class ApplicationTests {
         mockMvc.perform(get("/juegos"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/all"))
-                .andExpect(model().attribute("juegos", hasItem(juego)));
+                .andExpect(model().attribute("juegos", hasItem(juego)))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Simulation")),
+                        hasProperty("name", is("Role-Playing")),
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Misc")),
+                        hasProperty("name", is("Action")),
+                        hasProperty("name", is("Platform"))
+                )));
+
     }
 
     @Test
@@ -60,7 +70,17 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attributeExists("juego"))
-                .andExpect(model().attribute("title", "Añadir Nuevo Juego"));
+                .andExpect(model().attribute("title", "Añadir Nuevo Juego"))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Simulation")),
+                        hasProperty("name", is("Role-Playing")),
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Misc")),
+                        hasProperty("name", is("Action")),
+                        hasProperty("name", is("Platform"))
+        )));
+
     }
 
 
@@ -73,9 +93,9 @@ class ApplicationTests {
                         .param("title", "Grand Theft Auto: San Andreas")
                         .param("platform", "PS2")
                         .param("year", "2004")
-                        .param("price1", "24.99")
+                        .param("price", "24.99")
                         .param("discount", "10")
-                        .param("price2", "15.99")
+                        .param("priceWithDiscount", "15.99")
                         .param("category", "Action")
                         .param("publisher", "Take Two Interactive")
                         .param("pegi", "18")
@@ -85,14 +105,14 @@ class ApplicationTests {
                 .andExpect(redirectedUrl("/juegos"))
         ;
 
-        List<Juego> existingJuegos = (List<Juego>) juegoRepository.findAll();
-        assertThat(existingJuegos, contains(allOf(
+        List<Juego> existingJuego = (List<Juego>) juegoRepository.findAll();
+        assertThat(existingJuego, contains(allOf(
                 hasProperty("title", equalTo("Grand Theft Auto: San Andreas")),
                 hasProperty("platform", equalTo("PS2")),
                 hasProperty("year", equalTo(2004)),
-                hasProperty("price1", equalTo(24.99)),
-                hasProperty("discount", equalTo(10)),
-                hasProperty("price2", equalTo(15.99)),
+                hasProperty("price", equalTo(24.99)),
+                hasProperty("discount", equalTo(10.0)),
+                hasProperty("priceWithDiscount", equalTo(22.491)),
                 hasProperty("category", equalTo("Action")),
                 hasProperty("publisher", equalTo("Take Two Interactive")),
                 hasProperty("pegi", equalTo(18)),
@@ -108,8 +128,18 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attributeExists("juego"))
-                .andExpect(model().attribute("title", "Añadir Nuevo Juego"));
+                .andExpect(model().attribute("title", "Añadir Nuevo Juego"))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Simulation")),
+                        hasProperty("name", is("Role-Playing")),
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Misc")),
+                        hasProperty("name", is("Action")),
+                        hasProperty("name", is("Platform"))
+                )));
     }
+
     @Test
     @WithMockUser
     void returnsAFormToEditJuegos() throws Exception {
@@ -118,8 +148,19 @@ class ApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
                 .andExpect(model().attribute("juego", juego))
-                .andExpect(model().attribute("title", "Edit Juego"));
+                .andExpect(model().attribute("title", "Editar Juego"))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Simulation")),
+                        hasProperty("name", is("Role-Playing")),
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Misc")),
+                        hasProperty("name", is("Action")),
+                        hasProperty("name", is("Platform"))
+                )));
     }
+
+
     @Test
     @WithMockUser
     void allowsToDeleteAJuego() throws Exception {
@@ -154,7 +195,32 @@ class ApplicationTests {
                 .andExpect(view().name("juegos/front"))
                 .andExpect(model().attribute("title", equalTo("Juegos containing \"Grand\"")))
                 .andExpect(model().attribute("juegos", hasItem(juegoWithWord)))
-                .andExpect(model().attribute("juegos", not(hasItem(juegoWithoutWord))));
+                .andExpect(model().attribute("juegos", not(hasItem(juegoWithoutWord))))
+                .andExpect(model().attribute("categories", hasItems(
+                        hasProperty("name", is("Simulation")),
+                        hasProperty("name", is("Role-Playing")),
+                        hasProperty("name", is("Sports")),
+                        hasProperty("name", is("Racing")),
+                        hasProperty("name", is("Misc")),
+                        hasProperty("name", is("Action")),
+                        hasProperty("name", is("Platform"))
+                )));
+
+    }
+
+
+    @Test
+    @WithMockUser
+    void returnsJuegosFromAGivenCategory() throws Exception {
+
+        Juego rolePlayingJuegos = juegoRepository.save(new Juego("Pokemon Gold/Pokemon Silver","https://www.mobygames.com/images/covers/l/51564-pokemon-gold-version-game-boy-color-front-cover.jpg", "GB", 1999, 24.99, 0, 24.99, "Role-Playing","Nintendo", 7,""));
+        Juego simulationJuegos = juegoRepository.save(new Juego("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo",3,"suitable for kids"));
+
+        mockMvc.perform(get("/juegos?category=Role-Playing"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("juegos/all"))
+                .andExpect(model().attribute("juegos", hasItem(rolePlayingJuegos)))
+                .andExpect(model().attribute("juegos", not(hasItem(simulationJuegos))));
     }
 }
 
