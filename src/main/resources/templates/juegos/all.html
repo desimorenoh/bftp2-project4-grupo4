@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/head"> </head>
+<head th:replace="fragments/head"></head>
 <body>
 <header th:replace="fragments/header"></header>
 
@@ -10,8 +10,19 @@
         <a class="btn btn-outline-danger mt-3" href="/juegos/new" role="button">Añadir Nuevo</a>
     </div>
     <h1 th:text="${title}"></h1>
+    <div>
 
-    <div class="d-flex flex-row flex-sm-wrap justify-content-between align-items-center bd-highlight mb-5">
+    <div th:each="category: ${categories}" class="form-check">
+        <input th:href="${'/juegos?category='+category.name}" th:text="${category.name}"
+               class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+    <div class="d-flex flex-row flex-sm-wrap align-items-center bd-highlight mb-5">
 
         <div th:each="juego: ${juegos}" class="card" style="width: 18rem;">
             <img th:src="${juego.coverImage}" class="card-img-top" alt="cover">
@@ -25,9 +36,9 @@
                 <li th:text="${juego.discount}" class="list-group-item"></li>
                 <li th:text="${juego.priceWithDiscount}" class="list-group-item"></li>
                 <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
-<!--                <li th:text="${juego.price}" class="list-group-tache" style="text-decoration: line-through"></li>-->
+                <!--                <li th:text="${juego.price}" class="list-group-tache" style="text-decoration: line-through"></li>-->
             </ul>
-            <div class="card-body mb-5">
+            <div class="card-body mb-2">
                 <a class="btn btn-outline-warning btn-sm" th:href="'/juegos/edit/'+${juego.id}">Edit</a>
                 <a class="btn btn-outline-danger btn-sm" th:href="'/juegos/delete/'+${juego.id}">Delete</a>
             </div>
