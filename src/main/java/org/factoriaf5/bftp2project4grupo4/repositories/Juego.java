@@ -20,8 +20,7 @@ public class Juego implements Serializable {
     private String platform;
     @NotNull
     private int year;
-    @NotNull
-    private double discount;
+    private int discount;
     @NotNull
     private String category;
     @NotNull
@@ -37,7 +36,7 @@ public class Juego implements Serializable {
 
     }
 
-    public Juego(String title, String coverImage, String platform, int year, double price, double discount, double priceWithDiscount, String category, String publisher, int pegi, String pegiContent) {
+    public Juego(String title, String coverImage, String platform, int year, double price, int discount, double priceWithDiscount, String category, String publisher, int pegi, String pegiContent) {
 
         this.title = title;
         this.coverImage = coverImage;
@@ -74,7 +73,7 @@ public class Juego implements Serializable {
         return "Juego{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", title='" + coverImage + '\'' +
+                ", coverImage='" + coverImage + '\'' +
                 ", platform='" + platform + '\'' +
                 ", year='" + year + '\'' +
                 ", price='" + price + '\'' +
@@ -112,11 +111,11 @@ public class Juego implements Serializable {
     }
 
 
-    public double getDiscount() {
+    public int getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(int discount) {
         this.discount = discount;
     }
 
@@ -175,21 +174,21 @@ public class Juego implements Serializable {
     }
 
     public double getPriceWithDiscount() {
+        return this.priceWithDiscount;
+    }
+
+    public void setPriceWithDiscount(double price, double discount) {
+        this.priceWithDiscount = priceWithDiscount;
+    }
+
+    /*public double getPriceWithDiscount() {
         return this.price * (1 - this.discount / 100);
     }
 
     public void setPriceWithDiscount(double price, double discount) {
         this.priceWithDiscount = price * (1 - this.discount / 100);
-    }
+    }*/
 }
-
-//    public boolean hasDiscount() {
-//        if (discount != 0) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-
 
 
 
