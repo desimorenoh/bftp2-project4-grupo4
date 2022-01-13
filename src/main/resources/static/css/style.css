@@ -16,17 +16,6 @@ a:hover {
 }
 
 #discount {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: inline-block;
-    background: orange;
-    color: white;
-    height: 2.5rem;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 2.5rem;
-    transform: rotate(20deg);
 }
 
 #priceWD{
@@ -80,7 +69,9 @@ ul {
 .card {
     background: #000000;
     width: var(--card-width);
-    margin: 20px;
+    margin: auto;
+    margin-bottom: 5%;
+    margin-top: 5%;
     padding: 3px;
     position: relative;
     border-radius: 6px;
@@ -101,6 +92,11 @@ ul {
 .card:hover:before, .card:hover:after {
     animation: none;
     opacity: 0;
+}
+h1{
+    text-align: center;
+    color: #000000;
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
 }
 
 h5 {
@@ -151,6 +147,7 @@ h5:hover {
     100% {
         --rotate: 360deg;
     }
+
 }
 
 /*a {*/

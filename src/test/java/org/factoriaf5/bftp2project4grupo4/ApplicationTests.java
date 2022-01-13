@@ -35,8 +35,7 @@ class ApplicationTests {
     @WithMockUser
     void loadsTheHomePage() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/home"));
+                .andExpect(status().isOk());
     }
     @Autowired
     JuegoRepository juegoRepository;
@@ -93,9 +92,9 @@ class ApplicationTests {
                         .param("title", "Grand Theft Auto: San Andreas")
                         .param("platform", "PS2")
                         .param("year", "2004")
-                        .param("price", "24.99")
-                        .param("discount", "10")
-                        .param("priceWithDiscount", "15.99")
+                        .param("price", "0.0")
+                        .param("discount", "0")
+                        .param("priceWithDiscount", "24.99")
                         .param("category", "Action")
                         .param("publisher", "Take Two Interactive")
                         .param("pegi", "18")
@@ -110,9 +109,9 @@ class ApplicationTests {
                 hasProperty("title", equalTo("Grand Theft Auto: San Andreas")),
                 hasProperty("platform", equalTo("PS2")),
                 hasProperty("year", equalTo(2004)),
-                hasProperty("price", equalTo(24.99)),
-                hasProperty("discount", equalTo(10.0)),
-                hasProperty("priceWithDiscount", equalTo(22.491)),
+                hasProperty("price", equalTo(0.0)),
+                hasProperty("discount", equalTo(0)),
+                hasProperty("priceWithDiscount", equalTo(24.99)),
                 hasProperty("category", equalTo("Action")),
                 hasProperty("publisher", equalTo("Take Two Interactive")),
                 hasProperty("pegi", equalTo(18)),
@@ -192,7 +191,7 @@ class ApplicationTests {
 
         mockMvc.perform(get("/juegos/search?word=Grand"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("juegos/front"))
+                .andExpect(view().name("juegos/all"))
                 .andExpect(model().attribute("title", equalTo("Juegos containing \"Grand\"")))
                 .andExpect(model().attribute("juegos", hasItem(juegoWithWord)))
                 .andExpect(model().attribute("juegos", not(hasItem(juegoWithoutWord))))

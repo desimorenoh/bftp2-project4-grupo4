@@ -60,13 +60,7 @@ public class JuegoController {
         juegoRepository.deleteById(id);
         return "redirect:/juegos";
     }
-    @GetMapping("/home")
-    String listJuegosOnHome(Model model) {
-        List<Juego> juegos = (List<Juego>) juegoRepository.findAll();
-        model.addAttribute("title", "Novedades!!!");
-        model.addAttribute("juegos", juegos);
-        return "juegos/front";
-    }
+
 
     @GetMapping("/juegos/search")
     String searchJuego(@RequestParam String word, Model model) {
@@ -74,7 +68,7 @@ public class JuegoController {
         model.addAttribute("title", String.format("Juegos containing \"%s\"", word));
         model.addAttribute("juegos", juegos);
         model.addAttribute("categories", categoryRepository.findAll());
-        return "juegos/front";
+        return "juegos/all";
     }
 
 
