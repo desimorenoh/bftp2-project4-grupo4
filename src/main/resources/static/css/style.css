@@ -148,8 +148,16 @@ h5:hover {
     100% {
         --rotate: 360deg;
     }
-
 }
+
+.edit-form {
+    width: 50%;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+
+
 
 /*a {*/
 /*    color: #212534;*/
