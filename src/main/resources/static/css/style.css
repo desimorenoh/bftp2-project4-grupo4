@@ -93,15 +93,14 @@ ul {
     animation: none;
     opacity: 0;
 }
-<<<<<<< HEAD
-=======
+
 h1{
     text-align: center;
     color: #000000;
     text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
     margin-top: 50px;
 }
->>>>>>> de2fac81e0f0d43584d133ca5ffbb60259f5a3b4
+
 
 h5 {
     color: #ffffff;
