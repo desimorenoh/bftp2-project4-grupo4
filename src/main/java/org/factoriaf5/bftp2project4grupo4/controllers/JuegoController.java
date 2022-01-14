@@ -3,40 +3,49 @@ package org.factoriaf5.bftp2project4grupo4.controllers;
 import org.factoriaf5.bftp2project4grupo4.repositories.CategoryRepository;
 import org.factoriaf5.bftp2project4grupo4.repositories.Juego;
 import org.factoriaf5.bftp2project4grupo4.repositories.JuegoRepository;
-
+import org.factoriaf5.bftp2project4grupo4.repositories.PegiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.AttributedString;
 import java.util.List;
 
 @Controller
 public class JuegoController {
 
-    private final JuegoRepository juegoRepository;
-    private final CategoryRepository categoryRepository;
+    private JuegoRepository juegoRepository;
+    private CategoryRepository categoryRepository;
+    private PegiRepository pegiRepository;
+
 
     @Autowired
-    public JuegoController(JuegoRepository juegoRepository, CategoryRepository categoryRepository) {
+    public JuegoController(JuegoRepository juegoRepository, CategoryRepository categoryRepository, PegiRepository pegiRepository) {
         this.juegoRepository = juegoRepository;
         this.categoryRepository = categoryRepository;
+        this.pegiRepository = pegiRepository;
     }
 
     @GetMapping("/juegos")
-    String listJuegos(Model model, @RequestParam(required = false) String category) {
+    String listJuegos(Model model, @RequestParam(required = false) String category, String pegi) {
 
         model.addAttribute("title", "Lista de Juegos");
         model.addAttribute("juegos", getJuegos(category));
+        model.addAttribute("pegi", getPegi(pegi));
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("pegi", pegiRepository.findAll());
         return "juegos/all";
     }
+
+
 
     @GetMapping("/juegos/new")
     String newJuego(Model model){
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("pegi", pegiRepository.findAll());
         model.addAttribute("title", "Añadir Nuevo Juego");
         return "juegos/edit";
     }
@@ -52,6 +61,7 @@ public class JuegoController {
         Juego juego = juegoRepository.findById(id).get();
         model.addAttribute("juego", juego);
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("pegi", pegiRepository.findAll());
         model.addAttribute("title", "Editar Juego");
         return "juegos/edit";
     }
@@ -68,9 +78,9 @@ public class JuegoController {
         model.addAttribute("title", String.format("Juegos containing \"%s\"", word));
         model.addAttribute("juegos", juegos);
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("pegi", pegiRepository.findAll());
         return "juegos/all";
     }
-
 
     private List<Juego> getJuegos(String category) {
         if (category == null) {
@@ -78,5 +88,28 @@ public class JuegoController {
         }
         return juegoRepository.findJuegosByCategoryEquals(category);
     }
+    private List<Juego> getPegi(String pegi) {
+        if (pegi == null) {
+            return juegoRepository.findAll();
+        }
+        return juegoRepository.findJuegoByPegiEquals(pegi);
+    }
 
-}
+   }
+//        if (category == null) {
+//            return juegoRepository.findAll();
+//
+//        } else if (pegi == null) {
+//            return juegoRepository.findAll();
+//        }
+//        return juegoRepository.findJuegosByCategoryEquals(category);
+//    }
+//    private List<Juego> getJuego(String pegi) {
+//        if (pegi == null) {
+//            return juegoRepository.findAll();
+//        }
+//        return juegoRepository.findJuegoByPegiEquals(pegi);
+//    }
+
+
+
