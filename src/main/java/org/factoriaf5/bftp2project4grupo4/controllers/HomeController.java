@@ -28,9 +28,9 @@ public class HomeController {
     @GetMapping(path = {"/", "/home", "/index"})
     public String home(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("pegi", pegiRepository.findAll());
         model.addAttribute("title", "Novedades!!!");
         model.addAttribute("juegos", juegoRepository.findAll());
-        model.addAttribute("pegi", pegiRepository.findAll());
         return "/home";
     }
 
