@@ -9,4 +9,5 @@ import java.util.List;
 public interface JuegoRepository extends JpaRepository<Juego, Long> {
     List<Juego> findJuegoByTitleContaining(String word);
     List<Juego> findJuegosByCategoryEquals(String category);
+    List<Juego> findJuegoByPegiEquals(String pegi);
 }

@@ -44,7 +44,7 @@ class ApplicationTests {
     @WithMockUser
     void returnsTheExistingJuegos() throws Exception {
 
-        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", "18", "extreme violence"));
 
         mockMvc.perform(get("/juegos"))
                 .andExpect(status().isOk())
@@ -142,7 +142,7 @@ class ApplicationTests {
     @Test
     @WithMockUser
     void returnsAFormToEditJuegos() throws Exception {
-        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", "18", "extreme violence"));
         mockMvc.perform(get("/juegos/edit/" + juego.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("juegos/edit"))
@@ -163,7 +163,7 @@ class ApplicationTests {
     @Test
     @WithMockUser
     void allowsToDeleteAJuego() throws Exception {
-        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
+        Juego juego = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", "18", "extreme violence"));
         mockMvc.perform(get("/juegos/delete/" + juego.getId()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/juegos"));
@@ -186,8 +186,8 @@ class ApplicationTests {
     @WithMockUser
     void allowsToSearchGamesByTitle() throws Exception {
 
-        Juego juegoWithWord = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", 18, "extreme violence"));
-        Juego juegoWithoutWord = juegoRepository.save(new Juego("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo",3,"suitable for kids"));
+        Juego juegoWithWord = juegoRepository.save(new Juego("Grand Theft Auto: San Andreas", "https://es.mmoga.net/images/games/_ext/1024789/gta-san-andreas-steam_large;width=360,height=340,05d311a32bbb6de46cc6a17b625586379de5a3ee.png", "PS2", 2004, 24.99, 10, 15.99, "Action", "Take Two Interactive", "18", "extreme violence"));
+        Juego juegoWithoutWord = juegoRepository.save(new Juego("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo","3","suitable for kids"));
 
         mockMvc.perform(get("/juegos/search?word=Grand"))
                 .andExpect(status().isOk())
@@ -212,8 +212,8 @@ class ApplicationTests {
     @WithMockUser
     void returnsJuegosFromAGivenCategory() throws Exception {
 
-        Juego rolePlayingJuegos = juegoRepository.save(new Juego("Pokemon Gold/Pokemon Silver","https://www.mobygames.com/images/covers/l/51564-pokemon-gold-version-game-boy-color-front-cover.jpg", "GB", 1999, 24.99, 0, 24.99, "Role-Playing","Nintendo", 7,""));
-        Juego simulationJuegos = juegoRepository.save(new Juego("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo",3,"suitable for kids"));
+        Juego rolePlayingJuegos = juegoRepository.save(new Juego("Pokemon Gold/Pokemon Silver","https://www.mobygames.com/images/covers/l/51564-pokemon-gold-version-game-boy-color-front-cover.jpg", "GB", 1999, 24.99, 0, 24.99, "Role-Playing","Nintendo", "7",""));
+        Juego simulationJuegos = juegoRepository.save(new Juego("Nintendogs","https://www.mobygames.com/images/covers/l/200680-nintendogs-nintendo-ds-front-cover.jpg","DS",2005, 29.99,0,0,"Simulation","Nintendo","3","suitable for kids"));
 
         mockMvc.perform(get("/juegos?category=Role-Playing"))
                 .andExpect(status().isOk())

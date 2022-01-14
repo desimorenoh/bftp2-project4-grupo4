@@ -39,6 +39,19 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" style="color:#ffffff" id="navbarNavDarkDropdown"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pegi
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li th:each="pegi: ${pegi}">
+                                <a th:href="${'/juegos?pegi='+pegi.name}"
+                                   th:text="${pegi.name}">
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <form class="d-flex" action="/juegos/search" method="get">
                     <input name="word" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">

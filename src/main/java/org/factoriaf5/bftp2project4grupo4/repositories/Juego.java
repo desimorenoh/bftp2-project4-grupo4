@@ -26,7 +26,7 @@ public class Juego implements Serializable {
     @NotNull
     private String publisher;
     @NotNull
-    private int pegi;
+    private String pegi;
     private String pegiContent;
     private double price;
     private double priceWithDiscount;
@@ -36,7 +36,7 @@ public class Juego implements Serializable {
 
     }
 
-    public Juego(String title, String coverImage, String platform, int year, double price, int discount, double priceWithDiscount, String category, String publisher, int pegi, String pegiContent) {
+    public Juego(String title, String coverImage, String platform, int year, double price, int discount, double priceWithDiscount, String category, String publisher, String pegi, String pegiContent) {
 
         this.title = title;
         this.coverImage = coverImage;
@@ -135,11 +135,10 @@ public class Juego implements Serializable {
         this.publisher = publisher;
     }
 
-    public int getPegi() {
-        return pegi;
+    public String getPegi() { return pegi;
     }
 
-    public void setPegi(int pegi) {
+    public void setPegi(String pegi) {
         this.pegi = pegi;
     }
 
