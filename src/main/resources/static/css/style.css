@@ -10,6 +10,9 @@ a:hover {
     text-decoration: none;
     color: #ff0000;
 }
+.nav-link:focus {
+    color: #ff0000;
+}
 
 #price{
     text-decoration: line-through;
@@ -20,9 +23,11 @@ a:hover {
 
 #priceWD{
     color: #3CFF33;
+    font-size: 20px;
 }
 .navbar-toggler-icon {
     background-image: url('../img/burguer.png')!important;
+    font-size: 15px;
     width: 70px!important;
     height: 70px!important;
 }
@@ -33,14 +38,19 @@ ul {
 .dropdown-menu[data-bs-popper] {
     padding-left: 8px;
 }
-.nav-link {
-    color: #ffffff;
+
+.pegi-menu {
+    padding: 20px;
 }
-.nav-link:hover {
+.menu-link {
+    color: #ffffff;
+    margin-left: 25px;
+}
+
+.menu-link:hover {
     color: #ff0000;
     cursor: pointer;
 }
-
 
 @property --rotate {
     syntax: "<angle>";

@@ -31,17 +31,15 @@ public class JuegoController {
     String listJuegos(Model model, @RequestParam(required = false) String category, String pegi) {
 
         model.addAttribute("title", "Lista de Juegos");
-        model.addAttribute("juegos", getJuegos(category));
-        model.addAttribute("pegi", getPegi(pegi));
+        model.addAttribute("juegos", getJuegos(category, pegi));
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("pegi", pegiRepository.findAll());
         return "juegos/all";
     }
 
 
-
     @GetMapping("/juegos/new")
-    String newJuego(Model model){
+    String newJuego(Model model) {
         Juego juego = new Juego();
         model.addAttribute("juego", juego);
         model.addAttribute("categories", categoryRepository.findAll());
@@ -57,7 +55,7 @@ public class JuegoController {
     }
 
     @GetMapping("/juegos/edit/{id}")
-    String editJuego(Model model, @PathVariable Long id){
+    String editJuego(Model model, @PathVariable Long id) {
         Juego juego = juegoRepository.findById(id).get();
         model.addAttribute("juego", juego);
         model.addAttribute("categories", categoryRepository.findAll());
@@ -65,6 +63,7 @@ public class JuegoController {
         model.addAttribute("title", "Editar Juego");
         return "juegos/edit";
     }
+
     @GetMapping("/juegos/delete/{id}")
     String remove(@PathVariable Long id) {
         juegoRepository.deleteById(id);
@@ -82,20 +81,20 @@ public class JuegoController {
         return "juegos/all";
     }
 
-    private List<Juego> getJuegos(String category) {
-        if (category == null) {
-            return juegoRepository.findAll();
+    private List<Juego> getJuegos(String category, String pegi) {
+        if (category != null) {
+            return juegoRepository.findJuegosByCategoryEquals(category);
         }
-        return juegoRepository.findJuegosByCategoryEquals(category);
-    }
-    private List<Juego> getPegi(String pegi) {
-        if (pegi == null) {
-            return juegoRepository.findAll();
+
+        if (pegi != null) {
+            return juegoRepository.findJuegoByPegiEquals(pegi);
         }
-        return juegoRepository.findJuegoByPegiEquals(pegi);
+
+        return juegoRepository.findAll();
     }
 
-   }
+
+}
 //        if (category == null) {
 //            return juegoRepository.findAll();
 //

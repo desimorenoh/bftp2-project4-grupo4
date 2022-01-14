@@ -5,17 +5,19 @@
 <header th:replace="fragments/header"></header>
 <section class="container mt-5">
     <h1 th:text="${title}"></h1>
+
+
     <form th:action="@{/juegos/new}" th:object="${juego}" method="post" class="edit-form">
         <div class="form-group">
             <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
             <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
-                   placeholder="Enter title">
+                   placeholder="Enter title" pattern="^([a-zA-Z0-9].+)?$">
         </div>
         <div class="form-group">
             <label class="col-md2" for="coverImage">Cover Image</label>
             <input th:field="*{coverImage}" type="url" class="col-md6 form-control form-control-sm" id="coverImage"
-                   placeholder="Enter Url">
+                   placeholder="Enter Url" pattern="^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$">
         </div>
 
         <div><label class="col-md2">Platform</label>
@@ -32,18 +34,24 @@
         </div>
         <div class="form-group">
             <label class="col-md2" for="year">Year</label>
-            <input th:field="*{year}" type="number" class="col-md6 form-control form-control-sm" id="year"
-                   placeholder="Enter Year">
+            <input th:field="*{year} "type="text" class="col-md6 form-control form-control-sm" id="year"
+                   placeholder="Enter year" pattern="^(19|20)\d\d$">
         </div>
+
         <div class="form-group">
-            <label class="col-md2" for="price1">Full Price</label>
+            <label class="col-md2" for="price1">Price</label>
             <input th:field="*{price} "type="text" class="col-md6 form-control form-control-sm" id="price1"
-                   placeholder="Enter Full Price">
+                   placeholder="Enter Full Price" pattern="^\d+(.\d{1,2})?$">
         </div>
         <div class="form-group">
             <label class="col-md2" for="discount">Discount</label>
             <input th:field="*{discount}"type="number" class="col-md6 form-control form-control-sm" id="discount"
-                   placeholder="Enter Discount">
+                   placeholder="Enter Discount" pattern="^\d+(.\d{1,2})?$">
+        </div>
+        <div class="form-group">
+            <label class="col-md2" for="price1">Full Price</label>
+            <input th:field="*{priceWithDiscount} "type="text" class="col-md6 form-control form-control-sm" id="price1"
+                   placeholder="Enter Full Price" pattern="^\d+(.\d{1,2})?$">
         </div>
 
         <div><label class="col-md2">Category</label>
@@ -52,11 +60,8 @@
                 <option th:value="Action">Action</option>
                 <option th:value="Racing">Racing</option>
                 <option th:value="Role-Playing">Role-Playing</option>
-                <option th:value="Puzzle">Puzzle</option>
                 <option th:value="Misc">Misc</option>
-                <option th:value="Shooter">Shooter</option>
                 <option th:value="Simulation">Simulation</option>
-                <option th:value="Fight-Fighting">Fight-Fighting</option>
                 <option th:value="Platform">Platform</option>
             </select>
         </div>
@@ -69,12 +74,12 @@
         <div class="form-group">
             <label class="col-md2" for="pegi">PEGI</label>
             <input th:field="*{pegi}"type="text" class="col-md6 form-control form-control-sm" id="pegi"
-                   placeholder="Enter PEGI">
+                   placeholder="Enter PEGI" pattern="^\d+?$">
         </div>
         <div class="form-group">
             <label class="col-md2" for="pegiContent">PEGI Content</label>
             <input th:field="*{pegiContent}"type="text" class="col-md6 form-control form-control-sm" id="pegiContent"
-                   placeholder="Enter PEGI Content">
+                   placeholder="Enter PEGI Content" pattern="^([a-zA-Z0-9].+)?$">
         </div>
         <div class="card-footer mb-5">
             <input type="submit"  class="btn btn-outline-success btn-sm" value="Save"/>

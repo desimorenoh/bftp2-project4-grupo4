@@ -18,10 +18,10 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li th:text="${juego.category}" class="list-group-item"></li>
-                <li th:text="${juego.platform}" class="list-group-item"></li>
-                <li th:text="${juego.price}" class="list-group-item"></li>
-                <li th:text="${juego.discount}" class="list-group-item"></li>
-                <li th:text="${juego.priceWithDiscount}" class="list-group-item"></li>
+                <li th:text="${juego.pegiContent}" class="list-group-item"></li>
+                <li th:text="${juego.price}" class="list-group-item" id="price"></li>
+                <li th:text="${juego.discount}" class="list-group-item" id="discount"></li>
+                <li th:text="${juego.priceWithDiscount}" class="list-group-item" id="priceWD"></li>
                 <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
 
             </ul>
