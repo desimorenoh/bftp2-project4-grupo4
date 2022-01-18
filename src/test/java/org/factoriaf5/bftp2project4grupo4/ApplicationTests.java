@@ -78,10 +78,14 @@ class ApplicationTests {
                         hasProperty("name", is("Misc")),
                         hasProperty("name", is("Action")),
                         hasProperty("name", is("Platform"))
-        )));
+                )))
+                .andExpect(model().attribute("pegi", hasItems(
+                        hasProperty("name", is("3")),
+                        hasProperty("name", is("7")),
+                        hasProperty("name", is("10"))
+                )));
 
     }
-
 
 
     @Test
