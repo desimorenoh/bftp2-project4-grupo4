@@ -135,7 +135,8 @@ public class Juego implements Serializable {
         this.publisher = publisher;
     }
 
-    public String getPegi() { return pegi;
+    public String getPegi() {
+        return pegi;
     }
 
     public void setPegi(String pegi) {
@@ -176,7 +177,7 @@ public class Juego implements Serializable {
         return this.priceWithDiscount;
     }
 
-    public void setPriceWithDiscount(double price, double discount) {
+    public void setPriceWithDiscount(double price, int discount) {
         this.priceWithDiscount = priceWithDiscount;
     }
 
@@ -187,7 +188,14 @@ public class Juego implements Serializable {
     public void setPriceWithDiscount(double price, double discount) {
         this.priceWithDiscount = price * (1 - this.discount / 100);
     }*/
+    public boolean isDiscounted() {
+        return price > priceWithDiscount;
+    }
 }
+
+
+
+
 
 
 
