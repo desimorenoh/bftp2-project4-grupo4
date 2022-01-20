@@ -97,7 +97,7 @@ class ApplicationTests {
                         .param("platform", "DS")
                         .param("year", "2005")
                         .param("price", "30.0")
-                        .param("discount", "10")
+                        .param("discount", "10.0")
                         .param("priceWithDiscount", "27.0")
                         .param("category", "Simulation")
                         .param("publisher", "Nintendo")
@@ -114,11 +114,11 @@ class ApplicationTests {
                 hasProperty("platform", equalTo("DS")),
                 hasProperty("year", equalTo(2005)),
                 hasProperty("price", equalTo(30.0)),
-                hasProperty("discount", equalTo(10)),
+                hasProperty("discount", equalTo(10.0)),
                 hasProperty("priceWithDiscount", equalTo(27.0)),
                 hasProperty("category", equalTo("Simulation")),
                 hasProperty("publisher", equalTo("Nintendo")),
-                hasProperty("pegi", equalTo(3)),
+                hasProperty("pegi", equalTo("3")),
                 hasProperty("pegiContent", equalTo("Suitable for kids"))
 
         )));
