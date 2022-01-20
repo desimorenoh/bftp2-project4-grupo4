@@ -15,6 +15,11 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'cool.arch.patterns:patterns:1.0.1'
+    implementation 'io.github.lambig:Patterns:1.1.0'
+    implementation 'au.com.dius.pact.core:matchers:4.3.4'
+    implementation 'com.github.japgolly.microlibs:nonempty_3:4.0.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -22,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-test'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
 }
 
 test {

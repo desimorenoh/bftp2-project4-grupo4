@@ -93,16 +93,16 @@ class ApplicationTests {
     void allowsToCreateANewGame() throws Exception {
         mockMvc.perform(post("/juegos/new")
                         .with(csrf())
-                        .param("title", "Grand Theft Auto: San Andreas")
-                        .param("platform", "PS2")
-                        .param("year", "2004")
-                        .param("price", "0.0")
-                        .param("discount", "0")
-                        .param("priceWithDiscount", "24.99")
-                        .param("category", "Action")
-                        .param("publisher", "Take Two Interactive")
-                        .param("pegi", "18")
-                        .param("pegiContent", "extreme violence")
+                        .param("title", "Nintendogs")
+                        .param("platform", "DS")
+                        .param("year", "2005")
+                        .param("price", "30.0")
+                        .param("discount", "10")
+                        .param("priceWithDiscount", "27.0")
+                        .param("category", "Simulation")
+                        .param("publisher", "Nintendo")
+                        .param("pegi", "3")
+                        .param("pegiContent", "Suitable for kids")
                 )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/juegos"))
@@ -110,16 +110,16 @@ class ApplicationTests {
 
         List<Juego> existingJuego = (List<Juego>) juegoRepository.findAll();
         assertThat(existingJuego, contains(allOf(
-                hasProperty("title", equalTo("Grand Theft Auto: San Andreas")),
-                hasProperty("platform", equalTo("PS2")),
-                hasProperty("year", equalTo(2004)),
-                hasProperty("price", equalTo(0.0)),
-                hasProperty("discount", equalTo(0)),
-                hasProperty("priceWithDiscount", equalTo(24.99)),
-                hasProperty("category", equalTo("Action")),
-                hasProperty("publisher", equalTo("Take Two Interactive")),
-                hasProperty("pegi", equalTo(18)),
-                hasProperty("pegiContent", equalTo("extreme violence"))
+                hasProperty("title", equalTo("Nintendogs")),
+                hasProperty("platform", equalTo("DS")),
+                hasProperty("year", equalTo(2005)),
+                hasProperty("price", equalTo(30.0)),
+                hasProperty("discount", equalTo(10)),
+                hasProperty("priceWithDiscount", equalTo(27.0)),
+                hasProperty("category", equalTo("Simulation")),
+                hasProperty("publisher", equalTo("Nintendo")),
+                hasProperty("pegi", equalTo(3)),
+                hasProperty("pegiContent", equalTo("Suitable for kids"))
 
         )));
     }

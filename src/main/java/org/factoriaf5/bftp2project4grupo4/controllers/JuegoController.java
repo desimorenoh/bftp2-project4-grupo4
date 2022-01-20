@@ -5,11 +5,11 @@ import org.factoriaf5.bftp2project4grupo4.repositories.Juego;
 import org.factoriaf5.bftp2project4grupo4.repositories.JuegoRepository;
 import org.factoriaf5.bftp2project4grupo4.repositories.PegiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.AttributedString;
 import java.util.List;
 
 @Controller
@@ -26,6 +26,7 @@ public class JuegoController {
         this.categoryRepository = categoryRepository;
         this.pegiRepository = pegiRepository;
     }
+
 
     @GetMapping("/juegos")
     String listJuegos(Model model, @RequestParam(required = false) String category, String pegi) {
@@ -95,20 +96,7 @@ public class JuegoController {
 
 
 }
-//        if (category == null) {
-//            return juegoRepository.findAll();
-//
-//        } else if (pegi == null) {
-//            return juegoRepository.findAll();
-//        }
-//        return juegoRepository.findJuegosByCategoryEquals(category);
-//    }
-//    private List<Juego> getJuego(String pegi) {
-//        if (pegi == null) {
-//            return juegoRepository.findAll();
-//        }
-//        return juegoRepository.findJuegoByPegiEquals(pegi);
-//    }
+
 
 
 

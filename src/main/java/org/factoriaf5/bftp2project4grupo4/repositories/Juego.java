@@ -3,6 +3,7 @@ package org.factoriaf5.bftp2project4grupo4.repositories;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,13 +13,16 @@ public class Juego implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+
     private String title;
     @NotNull
+
     private String coverImage;
     @NotNull
     private String platform;
     @NotNull
+
     private int year;
     private int discount;
     @NotNull
@@ -28,6 +32,7 @@ public class Juego implements Serializable {
     @NotNull
     private String pegi;
     private String pegiContent;
+
     private double price;
     private double priceWithDiscount;
 

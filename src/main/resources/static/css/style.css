@@ -15,7 +15,7 @@ a:hover {
 }
 
 #price{
-    text-decoration: line-through;
+    text-decoration: line-through red;
 }
 
 #discount {
@@ -34,6 +34,9 @@ a:hover {
 ul {
     list-style: none;
 
+}
+.inline{
+    display: inline-block!important;
 }
 .dropdown-menu[data-bs-popper] {
     padding-left: 8px;

@@ -12,16 +12,16 @@
             <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
             <input th:field="*{title}" type="text" class="col-md6 form-control form-control-sm" id="title"
-                   placeholder="Enter title" pattern="^([a-zA-Z0-9].+)?$">
+                   placeholder="Enter title" required pattern="^([a-zA-Z0-9].+)?$">
         </div>
         <div class="form-group">
             <label class="col-md2" for="coverImage">Cover Image</label>
             <input th:field="*{coverImage}" type="url" class="col-md6 form-control form-control-sm" id="coverImage"
-                   placeholder="Enter Url" pattern="^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$">
+                   placeholder="Enter Url" required pattern="^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$">
         </div>
 
         <div><label class="col-md2">Platform</label>
-        <select th:field="*{platform}" class="form-select form-select-sm" for="platform">
+        <select th:field="*{platform}" required class="form-select form-select-sm" for="platform">
             <option th:value="Wii">Wii</option>
             <option th:value="Nes">Nes</option>
             <option th:value="DS">DS</option>
@@ -34,51 +34,51 @@
         </div>
         <div class="form-group">
             <label class="col-md2" for="year">Year</label>
-            <input th:field="*{year} "type="text" class="col-md6 form-control form-control-sm" id="year"
-                   placeholder="Enter year" pattern="^(19|20)\d\d$">
+            <input th:field="*{year}" type="text" class="col-md6 form-control form-control-sm" id="year"
+                   placeholder="Enter year" required pattern="^(19|20)\d\d$">
         </div>
 
         <div class="form-group">
             <label class="col-md2" for="price1">Price</label>
-            <input th:field="*{price} "type="text" class="col-md6 form-control form-control-sm" id="price1"
+            <input th:field="*{price}" type="text" class="col-md6 form-control form-control-sm" id="price1"
                    placeholder="Enter Full Price" pattern="^\d+(.\d{1,2})?$">
         </div>
         <div class="form-group">
             <label class="col-md2" for="discount">Discount</label>
-            <input th:field="*{discount}"type="number" class="col-md6 form-control form-control-sm" id="discount"
+            <input th:field="*{discount}" type="number" class="col-md6 form-control form-control-sm" id="discount"
                    placeholder="Enter Discount" pattern="^\d+(.\d{1,2})?$">
         </div>
         <div class="form-group">
             <label class="col-md2" for="price1">Full Price</label>
-            <input th:field="*{priceWithDiscount} "type="text" class="col-md6 form-control form-control-sm" id="price1"
+            <input th:field="*{priceWithDiscount}" type="text" class="col-md6 form-control form-control-sm" id="priceWD"
                    placeholder="Enter Full Price" pattern="^\d+(.\d{1,2})?$">
         </div>
 
         <div><label class="col-md2">Category</label>
-            <select th:field="*{category}" class="form-select form-select-sm" for="category">
-                <option th:value="Sports">Sports</option>
-                <option th:value="Action">Action</option>
-                <option th:value="Racing">Racing</option>
-                <option th:value="Role-Playing">Role-Playing</option>
-                <option th:value="Misc">Misc</option>
-                <option th:value="Simulation">Simulation</option>
-                <option th:value="Platform">Platform</option>
+            <select th:field="*{category}" type="text" class="col-md6 form-control form-control-sm" id="category">
+                <option th:each="category: ${categories}"
+                        th:value="${category.name}"
+                        th:text="${category.name}">
+                </option>
             </select>
         </div>
         <div class="form-group">
             <label class="col-md2" for="publisher">Publisher</label>
-            <input th:field="*{publisher}"type="text" class="col-md6 form-control form-control-sm" id="publisher"
+            <input th:field="*{publisher}" type="text" class="col-md6 form-control form-control-sm" id="publisher"
                    placeholder="Enter publisher">
         </div>
 
-        <div class="form-group">
-            <label class="col-md2" for="pegi">PEGI</label>
-            <input th:field="*{pegi}"type="text" class="col-md6 form-control form-control-sm" id="pegi"
-                   placeholder="Enter PEGI" pattern="^\d+?$">
+        <div><label class="col-md2">PEGI</label>
+            <select th:field="*{pegi}" type="text" class="col-md6 form-control form-control-sm" id="pegi">
+                <option th:each="pegi: ${pegi}"
+                        th:value="${pegi.name}"
+                        th:text="${pegi.name}">
+                </option>
+            </select>
         </div>
         <div class="form-group">
             <label class="col-md2" for="pegiContent">PEGI Content</label>
-            <input th:field="*{pegiContent}"type="text" class="col-md6 form-control form-control-sm" id="pegiContent"
+            <input th:field="*{pegiContent}" type="text" class="col-md6 form-control form-control-sm" id="pegiContent"
                    placeholder="Enter PEGI Content" pattern="^([a-zA-Z0-9].+)?$">
         </div>
         <div class="card-footer mb-5">
