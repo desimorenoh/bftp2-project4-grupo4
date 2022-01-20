@@ -48,11 +48,7 @@
             <input th:field="*{discount}" type="number" class="col-md6 form-control form-control-sm" id="discount"
                    placeholder="Enter Discount" pattern="^\d+(.\d{1,2})?$">
         </div>
-        <div class="form-group">
-            <label class="col-md2" for="price1">Full Price</label>
-            <input th:field="*{priceWithDiscount}" type="text" class="col-md6 form-control form-control-sm" id="priceWD"
-                   placeholder="Enter Full Price" pattern="^\d+(.\d{1,2})?$">
-        </div>
+
 
         <div><label class="col-md2">Category</label>
             <select th:field="*{category}" type="text" class="col-md6 form-control form-control-sm" id="category">

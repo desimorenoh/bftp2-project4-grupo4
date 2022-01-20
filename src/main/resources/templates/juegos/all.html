@@ -19,15 +19,16 @@
             <div class="card-body">
                 <h5 th:text="${juego.title}" class="card-title"></h5>
             </div>
-            <ul class="list-group list-group-flush">
-                <li th:text="${juego.category}" class="list-group-item"></li>
-                <li th:text="${juego.platform}" class="list-group-item"></li>
-                <li th:text="${juego.price}" class="list-group-item"></li>
-                <li th:text="${juego.discount}" class="list-group-item"></li>
-                <li th:text="${juego.priceWithDiscount}" class="list-group-item"></li>
-                <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
-
-            </ul>
+            <div class="lista">
+                <ul class="list-group list-group-flush">
+                    <li th:text="${juego.category}" class="list-group-item"></li>
+                    <li th:text="${juego.platform}" class="list-group-item"></li>
+                    <li th:text="${juego.price+'€'}" class="list-group-item " id="price"></li>
+                    <li th:text="${juego.priceWithDiscount}+'€'" class="list-group-item" id="priceWithDiscount"></li>
+                    <li th:text="${juego.pegiContent}" class="list-group-item"></li>
+                    <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
+                </ul>
+            </div>
             <div class="card-body mb-2">
                 <a class="btn btn-outline-warning btn-sm" th:href="'/juegos/edit/'+${juego.id}"
                    sec:authorize="isAuthenticated()">Edit</a>

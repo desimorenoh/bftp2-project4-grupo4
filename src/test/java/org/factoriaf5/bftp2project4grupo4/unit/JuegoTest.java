@@ -19,13 +19,5 @@ public class JuegoTest {
 
     }
 
-//    @Test
-//    public void cuandoTieneDescuentoElPrecioSeTacha() {
-//
-//        Juego juego = new Juego();
-//        juego.hasDiscount();
-//
-//        assertThat(juego.hasDiscount(), equalTo(true));
-//    }
 }
 

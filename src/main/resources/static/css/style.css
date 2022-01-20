@@ -16,6 +16,11 @@ a:hover {
 
 #price{
     text-decoration: line-through red;
+    border-style: none;
+}
+
+.list-group-item {
+    display: inline-block;
 }
 
 #discount {
@@ -24,6 +29,7 @@ a:hover {
 #priceWithDiscount{
     color: #3CFF33;
     font-size: 20px;
+    border-style: none;
 }
 .navbar-toggler-icon {
     background-image: url('../img/burguer.png')!important;
@@ -85,7 +91,6 @@ ul {
     margin: auto;
     margin-bottom: 5%;
     margin-top: 5%;
-    padding: 3px;
     position: relative;
     border-radius: 6px;
     text-align: center;
@@ -106,7 +111,10 @@ ul {
     animation: none;
     opacity: 0;
 }
+.precio-original{
+    background-color: #ffffff;
 
+}
 h1{
     text-align: center;
     color: #000000;

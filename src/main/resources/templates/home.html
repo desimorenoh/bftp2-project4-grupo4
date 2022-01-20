@@ -20,8 +20,10 @@
                 <ul class="list-group list-group-flush">
                     <li th:text="${juego.category}" class="list-group-item"></li>
                     <li th:text="${juego.pegiContent}" class="list-group-item"></li>
-                    <li th:text="${juego.price+'€'}" th:if="${juego.isDiscounted()}" class="list-group-item " id="price"></li>
-                    <li th:text="${juego.priceWithDiscount}+'€'" class="list-group-item" id="priceWithDiscount"></li>
+                    <li class="precio-original">
+                        <span th:text="${juego.price+'€'}" th:if="${juego.isDiscounted()}" class="list-group-item" id="price">
+                        </span><span th:text="${juego.priceWithDiscount}+'€'" class="list-group-item precio-dscto" id="priceWithDiscount"></span></li>
+
                     <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
                 </ul>
             </div>

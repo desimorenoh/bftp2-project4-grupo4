@@ -24,7 +24,7 @@ public class Juego implements Serializable {
     @NotNull
 
     private int year;
-    private int discount;
+    private double discount;
     @NotNull
     private String category;
     @NotNull
@@ -41,7 +41,7 @@ public class Juego implements Serializable {
 
     }
 
-    public Juego(String title, String coverImage, String platform, int year, double price, int discount, double priceWithDiscount, String category, String publisher, String pegi, String pegiContent) {
+    public Juego(String title, String coverImage, String platform, int year, double price, double discount, double priceWithDiscount, String category, String publisher, String pegi, String pegiContent) {
 
         this.title = title;
         this.coverImage = coverImage;
@@ -116,11 +116,11 @@ public class Juego implements Serializable {
     }
 
 
-    public int getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
@@ -178,23 +178,17 @@ public class Juego implements Serializable {
         return price;
     }
 
+
     public double getPriceWithDiscount() {
-        return this.priceWithDiscount;
+        return Math.round((price - (price * (discount * 1.0 / 100))) * 100.0) / 100.0;
     }
-
-    public void setPriceWithDiscount(double price, int discount) {
-        this.priceWithDiscount = priceWithDiscount;
-    }
-
-    /*public double getPriceWithDiscount() {
-        return this.price * (1 - this.discount / 100);
-    }
-
     public void setPriceWithDiscount(double price, double discount) {
-        this.priceWithDiscount = price * (1 - this.discount / 100);
-    }*/
+        this.priceWithDiscount = price*(1-this.discount/100);
+    }
+
     public boolean isDiscounted() {
-        return price > priceWithDiscount;
+
+        return (this.discount != 0);
     }
 }
 
