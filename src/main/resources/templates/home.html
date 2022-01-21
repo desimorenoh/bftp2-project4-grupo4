@@ -27,12 +27,6 @@
                     <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
                 </ul>
             </div>
-            <div class="card-body mb-2">
-                <a class="btn btn-outline-warning btn-sm" th:href="'/juegos/edit/'+${juego.id}"
-                   sec:authorize="isAuthenticated()">Edit</a>
-                <a class="btn btn-outline-danger btn-sm" th:href="'/juegos/delete/'+${juego.id}"
-                   sec:authorize="isAuthenticated()">Delete</a>
-            </div>
         </div>
     </div>
 
