@@ -14,25 +14,26 @@
 
     <div class="d-flex flex-row flex-sm-wrap align-items-center bd-highlight mb-5">
 
-        <div th:each="juego: ${juegos}" class="card" style="width: 18rem;">
+        <div th:each="juego: ${juegos}" class="card block" style="width: 18rem;">
             <img th:src="${juego.coverImage}" class="card-img-top" alt="cover">
-            <div class="card-body">
+            <div class="block_body block_body_cat">
                 <h5 th:text="${juego.title}" class="card-title"></h5>
-            </div>
-            <div class="lista">
                 <ul class="list-group list-group-flush">
-                    <li th:text="${juego.category}" class="list-group-item"></li>
-                    <li th:text="${juego.platform}" class="list-group-item"></li>
-                    <li th:text="${juego.price+'€'}" class="list-group-item " id="price"></li>
-                    <li th:text="${juego.priceWithDiscount}+'€'" class="list-group-item" id="priceWithDiscount"></li>
-                    <li th:text="${juego.pegiContent}" class="list-group-item"></li>
-                    <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
+                    <li th:text="${juego.id}" class="list-group-item item-all" style="display:none;"></li>
+                    <li th:text="${juego.category}" class="list-group-item item-all"></li>
+                    <li th:text="${juego.platform}" class="list-group-item item-all"></li>
+                    <li th:text="${juego.year}" class="list-group-item item-all"></li>
+                    <li th:text="${juego.publisher}" class="list-group-item item-all"></li>
+                    <li th:text="${juego.pegi}" class="list-group-item item-all"></li>
+                    <li th:text="${juego.pegiContent}" class="list-group-item item-all"></li>
+                    <li class="precio-original">
+                        <span th:text="${juego.price+'€'}" th:if="${juego.isDiscounted()}" class="" id="price">
+                        </span><span th:text="${juego.priceWithDiscount}+'€'" class=" precio-dscto" id="priceWithDiscount"></span></li>
+                    <li th:text="${juego.discount+'%'}" class="list-group-item mb-2 item-all"></li>
                 </ul>
-            </div>
-            <div class="card-body mb-2">
-                <a class="btn btn-outline-warning btn-sm" th:href="'/juegos/edit/'+${juego.id}"
+                <a class="btn btn-outline-warning btn-sm mb-5 edit-btn" th:href="'/juegos/edit/'+${juego.id}"
                    sec:authorize="isAuthenticated()">Edit</a>
-                <a class="btn btn-outline-danger btn-sm" th:href="'/juegos/delete/'+${juego.id}"
+                <a class="btn btn-outline-danger btn-sm mb-5 del-btn" th:href="'/juegos/delete/'+${juego.id}"
                    sec:authorize="isAuthenticated()">Delete</a>
             </div>
         </div>

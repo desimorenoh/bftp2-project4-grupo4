@@ -4,27 +4,23 @@
 <body>
 <header th:replace="fragments/header"></header>
 <section class="container">
-    <!--    <h2>Welcome to Legacy Games</h2>-->
-    <!--    <p>Go to the <a href="/juegos">Juegos</a> section or <a href="/juegos/new">Add new game</a></p>-->
+
     <h1 th:text="${title}"></h1>
 
 
-    <div class="d-flex flex-row flex-sm-wrap align-items-center bd-highlight mb-5">
+    <div class="d-flex flex-row flex-sm-wrap align-items-center bd-highlight mb-5 blocks">
 
-        <div th:each="juego: ${juegos}" class="card" style="width: 18rem;">
+        <div th:each="juego: ${juegos}" class="card block" style="width: 18rem;">
             <img th:src="${juego.coverImage}" class="card-img-top" alt="cover">
-            <div class="card-body">
+            <div class="block_body">
                 <h5 th:text="${juego.title}" class="card-title"></h5>
-            </div>
-            <div class="lista">
                 <ul class="list-group list-group-flush">
+                    <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
                     <li th:text="${juego.category}" class="list-group-item"></li>
                     <li th:text="${juego.pegiContent}" class="list-group-item"></li>
                     <li class="precio-original">
-                        <span th:text="${juego.price+'€'}" th:if="${juego.isDiscounted()}" class="list-group-item" id="price">
-                        </span><span th:text="${juego.priceWithDiscount}+'€'" class="list-group-item precio-dscto" id="priceWithDiscount"></span></li>
-
-                    <li th:text="${juego.id}" class="list-group-item" style="display:none;"></li>
+                        <span th:text="${juego.price+'€'}" th:if="${juego.isDiscounted()}" class="" id="price">
+                        </span><span th:text="${juego.priceWithDiscount}+'€'" class=" precio-dscto" id="priceWithDiscount"></span></li>
                 </ul>
             </div>
         </div>
