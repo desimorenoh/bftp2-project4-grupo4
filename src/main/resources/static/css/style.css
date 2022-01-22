@@ -31,14 +31,10 @@ a:hover {
     color: #ffffff;
     border-style: none;
     background-color: transparent;
-
 }
 
-#discount {
-}
 
 #priceWithDiscount {
-
     font-size: 20px;
     border-style: none;
     color: #00FF00;
@@ -54,9 +50,7 @@ a:hover {
 
 ul {
     list-style: none;
-
 }
-
 
 .dropdown-menu[data-bs-popper] {
     padding-left: 8px;
@@ -79,17 +73,13 @@ ul {
 .precio-original {
     background-color: transparent;
     text-align: center;
-
-
 }
 
 h1 {
     text-align: center;
     color: #000000;
-    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
     margin-top: 50px;
 }
-
 
 h5 {
     color: #ffffff;
@@ -99,13 +89,7 @@ h5:hover {
     color: #F00;
 }
 
-.edit-form {
-    width: 50%;
-    margin-left: 50%;
-    transform: translate(-50%);
-}
-
-
+/*Tarjetas Home*/
 .blocks {
     display: flex;
     flex-flow: row nowrap;
@@ -127,7 +111,6 @@ h5:hover {
     color: #fff;
     height: 100%;
     transition: top .5s;
-
 }
 
 .block_body {
@@ -142,24 +125,50 @@ h5:hover {
     margin-top: 10px;
     -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
     box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-
 }
+
 .card-title {
     text-align: center;
 }
-
-
-
+/*Tarjetas Hover en Catálogo*/
 .block_body_cat {
     position: absolute;
     padding-top: 5%;
     top: 100%;
 }
+
 .item-all {
     padding: 0;
-
+}
+.edit-btn {
+    margin-left: 27%;
 }
 
-.ico {
-
+.del-btn {
+    margin-left: 5%;
 }
+
+.footer {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    align-self: center;
+}
+
+/*formulario*/
+
+.edit-form {
+    width: 40%;
+    padding: 20px;
+    background-color: lightgray;
+    margin-left: 50%; transform: translate(-50%);
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+.boton-edit {
+    padding: 10px 0 5px 0;
+    box-shadow: -1px 3px 8px 5px #D8D8D8, 2px 5px 16px 0px #6E6E6E, 5px 5px 15px 5px rgba(0,0,0,0);
+    background-color: #ff8000;
+    width: 100%;
+}
+

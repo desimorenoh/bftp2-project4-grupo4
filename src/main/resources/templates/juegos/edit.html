@@ -7,7 +7,7 @@
     <h1 th:text="${title}"></h1>
 
 
-    <form th:action="@{/juegos/new}" th:object="${juego}" method="post" class="edit-form">
+    <form th:action="@{/juegos/new}" th:object="${juego}" method="post" class="edit-form mb5">
         <div class="form-group">
             <input type="hidden" th:field="*{id}">
             <label class="col-md2" for="title">Title</label>
@@ -78,7 +78,7 @@
                    placeholder="Enter PEGI Content" pattern="^([a-zA-Z0-9].+)?$">
         </div>
         <div class="card-footer mb-5">
-            <input type="submit"  class="btn btn-outline-success btn-sm" value="Save"/>
+            <input type="submit" class="boton-edit" value="Guardar"/>
         </div>
     </form>
 </section>

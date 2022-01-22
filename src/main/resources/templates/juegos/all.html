@@ -18,22 +18,22 @@
             <img th:src="${juego.coverImage}" class="card-img-top" alt="cover">
             <div class="block_body block_body_cat">
                 <h5 th:text="${juego.title}" class="card-title"></h5>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush mb-3">
                     <li th:text="${juego.id}" class="list-group-item item-all" style="display:none;"></li>
                     <li th:text="${juego.category}" class="list-group-item item-all"></li>
                     <li th:text="${juego.platform}" class="list-group-item item-all"></li>
                     <li th:text="${juego.year}" class="list-group-item item-all"></li>
                     <li th:text="${juego.publisher}" class="list-group-item item-all"></li>
-                    <li th:text="${juego.pegi}" class="list-group-item item-all"></li>
+                    <li th:text="${'PEGI '+juego.pegi}" class="list-group-item item-all"></li>
                     <li th:text="${juego.pegiContent}" class="list-group-item item-all"></li>
                     <li class="precio-original">
                         <span th:text="${juego.price+'€'}" th:if="${juego.isDiscounted()}" class="" id="price">
                         </span><span th:text="${juego.priceWithDiscount}+'€'" class=" precio-dscto" id="priceWithDiscount"></span></li>
-                    <li th:text="${juego.discount+'%'}" class="list-group-item mb-2 item-all"></li>
+                    <li th:text="${juego.discount+'%'}" th:if="${juego.isDiscounted()}" class="list-group-item mb-2 item-all"></li>
                 </ul>
                 <a class="btn btn-outline-warning btn-sm mb-5 edit-btn" th:href="'/juegos/edit/'+${juego.id}"
                    sec:authorize="isAuthenticated()">Edit</a>
-                <a class="btn btn-outline-danger btn-sm mb-5 del-btn" th:href="'/juegos/delete/'+${juego.id}"
+                <a class="btn btn-outline-danger btn-sm mb-5 del-btn " th:href="'/juegos/delete/'+${juego.id}"
                    sec:authorize="isAuthenticated()">Delete</a>
             </div>
         </div>
