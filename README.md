@@ -1,21 +1,22 @@
-Título del Proyecto
-Legacy Games
+## Legacy Games
 
-Comenzando 🚀
+### Comenzando 🚀
 Imitación de una tienda de vídeo juegos, con operaciones CRUD
 Securing Web, Barra de Búsqueda.
 
-Construido con 🛠️
+### Construido con 🛠️
 HTML, CSS3, JAVA, Thymeleaf, Spring Boot.
 
-Autores ✒️
-Ana Casas
-Judith Quine
-Desirée Moreno
-Kris Maier
+### Autores ✒️
+- Ana Casas  
+- Judith Quine  
+- Desirée Moreno  
+- Kris Maier
 
 
-Expresiones de Gratitud 🎁
-a FactoríaF5 
+### Expresiones de Gratitud 🎁
+FactoríaF5  
+Marta Sastre  
+Javi Sánchez
 
 
