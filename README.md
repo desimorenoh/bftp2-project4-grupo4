@@ -1,5 +1,5 @@
 ## Legacy Games
-![](C:\Users\ACER\Documents\legacygames\src\main\resources\static\img\readme.jpg)
+![](src/main/resources/static/img/readme.jpg)
 ### Comenzando 🚀
 Imitación de una tienda de vídeo juegos, con operaciones CRUD
 Securing Web, Barra de Búsqueda.
