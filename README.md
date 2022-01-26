@@ -19,8 +19,6 @@ FactoríaF5
 Marta Sastre  
 Javi Sánchez
 
-<<<<<<< HEAD
+
 ![](C:\Users\ACER\Documents\legacygames\src\main\resources\static\img\readme.jpg)
-=======
-![](/readme.jpg)
->>>>>>> 8d13943d3b37b2593c7b95c32fbff0657968d3ec
+
