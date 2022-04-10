@@ -15,10 +15,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
     implementation 'cool.arch.patterns:patterns:1.0.1'
     implementation 'io.github.lambig:Patterns:1.1.0'
-    implementation 'au.com.dius.pact.core:matchers:4.3.4'
+    implementation 'au.com.dius.pact.core:matchers:4.3.6'
     implementation 'com.github.japgolly.microlibs:nonempty_3:4.0.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -32,4 +32,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
 }
